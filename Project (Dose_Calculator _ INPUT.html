@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>DOSE_CALCULATOR_INPUT</title>
+    <style>
+ body {
+    background: linear-gradient(
+        180deg,
+        rgba(118, 194, 222, 0.25) 0%,
+    rgba(83, 156, 183, 0.40) 25%,
+    rgba(170, 211, 226, 0.5) 50%,
+    rgba(63, 123, 145, 0.75) 75%,
+    rgba(29, 68, 82, 1) 100%
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 360px;
+    height: 950px;  
+}
+.Entire-Page {
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+.Button-dose-calculator {
+        background-color: #2E7DA4;
+        color: black;
+        height: 70px;
+        width: 270;
+        padding: 6px;
+        font-weight: bolder;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 24px;
+        border-width: 2px;
+        border-color: black;
+        border-radius: 5px;
+        border-style: solid;
+        display: block;
+        margin-bottom: 50px;  
+        margin-top: 50px;
+        cursor: pointer;
+        align-items: center;
+ }
+
+ .Button-weight-based-calc {
+    background-color: #8AADBC;
+    color: black;
+    height: 54px;
+    width: 300px;
+    padding: 6px;
+    font-family: source serif pro;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 3px;
+    border-color: rgba(11, 65, 92, 0.8);
+    border-width: 3px;
+    border-style: solid;
+    display: block;
+    margin-bottom: 50px;  
+    margin-top: 50px;
+    cursor: pointer;
+    align-items: center;   
+ }
+ .Input-card {
+    background-color: #F3FBFF;
+    width: 324px;
+    height: 670px;
+    border-radius: 23px;
+    border-color: black;
+    border-width: 1px;
+    box-shadow: 4px 5px 6px 2px rgba(106, 118, 123, 1);
+ }
+ .DRUG {
+    display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+ }
+ .Drug-icon{
+    width: 14px;
+    height: 22px;
+    background-repeat: no-repeat;
+    display: block;
+    vertical-align: top;
+    margin-bottom: 5px;
+ }
+ .DRUG-button{
+    vertical-align: top;
+    margin-right: 50px;
+    
+
+ }
+.custom-dropdown{
+    display: inline-block;
+}
+.dropdown-list {
+    overflow-y:auto;
+    max-height: 200px;
+}
+
+ .DOSAGE_FORM {
+    display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+ }
+ .Dosage_Form_Icon {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    display: block;
+    margin-bottom: 5px;
+ }
+ .Dosage_Form_button{
+    display: inline-block;
+    vertical-align: top;
+    
+ }
+.custom-dropdown{
+    display: inline-block;
+}
+.dropdown-list {
+    overflow-y:auto;
+    max-height: 200px;
+}
+
+ .Weight {
+    display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+ }
+ .Weight_Icon {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    display: block;
+    margin-bottom: 5px;
+ }
+ .Weight_button{
+    display: inline-block;
+    vertical-align: top;
+ }
+.Input_Value{
+    display: inline-block;
+}
+  .Age {
+    display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+ }
+ .Age_Icon {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    display: block;
+    margin-bottom: 5px;
+ }
+ .Age_button{
+    display: inline-block;
+    vertical-align: top;
+ }
+.Input_Value{
+    display: inline-block;
+}
+    </style>   
+       
+
+    </head>
+    <body>
+        <div class="Entire-Page">
+<button class="Button-dose-calculator"> DOSE- CALCULATOR </button>
+        <button class="Button-weight-based-calc">
+            Weight Based Calculation
+        </button>
+
+        <div class="Input-card">
+            <div class="DRUG">
+                <img class="Drug-icon" src="Images_and_inputs/Drug_icon.png">
+                <button class="DRUG-button">
+                    DRUG:
+                </button>
+                <div class="custom-dropdown">
+                    <input class="Input-Box" type="text" placeholder="Select Drug">
+                    <div class="dropdown-list">
+                        <p>Amoxicillin</p>
+                        <p>Azithromycin</p>
+                        <p>Budesolide</p>
+                        <p>Cefixime</p>
+                        <p>Dextrometharphan</p>
+                        <p>Ibuprofen</p>
+                        <p>Mefenamic Acid</p>
+                        <p>Ondensatron</p>
+                        <p>Paracetamol</p>
+                        <p>Salbutamol</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="DOSAGE_FORM">
+                <img class="Dosage_Form_Icon" src="/Images_and_inputs/Dosage_form_icon.png">
+                <button class="Dosage_Form_button">
+                    Dosage Form:
+                </button>
+                <div class="custom-dropdown">
+                    <input class="Input-Box" type="text" placeholder="Dosage Form">
+                    <div class="dropdown-list">
+                        <p>Tablet</p>
+                        <p>Capsule</p>
+                        <p>Suspenion</p>
+                        <p>Powd. for Susp.</p>
+                        <p>Syrup</p>
+                        <p>Drops</p>
+                        <p>Injection</p>
+                    </div>       
+                </div>
+            </div>
+        
+             <div class="Weight">
+                <img class="Weight_Icon" src="/Images_and_inputs/Weight_icon.png">
+                <button class="Weight_button">
+                    Weight:
+                </button>
+                <div class="Input_Value">
+                    <input class="Input-Box" type="number" placeholder=" Kg">     
+                </div>
+            </div>
+
+             <div class="Age">
+                <img class="Age_Icon" src="/Images_and_inputs/Age_icon.png">
+                <button class="Age_button">
+                    Age:
+                </button>
+                <div class="Input_Value">
+                    <input class="Input-Box" type="number" placeholder=" |Years">
+                    <input class="Month_Input_Box" type="number" placeholder=" |Months">
+                </div>
+            </div>
+    </body>
+</html>
