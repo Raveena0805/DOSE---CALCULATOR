@@ -83,19 +83,15 @@
     height: 22px;
     background-repeat: no-repeat;
     display: block;
-    vertical-align: top;
     margin-bottom: 5px;
  }
  .DRUG-button{
     vertical-align: top;
     margin-right: 50px;
-    
-
  }
 .custom-dropdown{
     display: inline-block;
-    margin-bottom: 5px;
-    
+    margin-bottom: 5px;  
 }
 .dropdown-list {
     overflow-y:auto;
@@ -112,9 +108,9 @@
         margin-top: 10px;
         margin-left: 10px;
  }
- .Dosage_Form_Icon {
+ .Dosage_form_Icon {
     width: 20px;
-    height: 20px;
+    height: 22px;
     background-repeat: no-repeat;
     display: block;
     margin-bottom: 5px;
@@ -151,24 +147,35 @@
 .Input_Value{
     display: inline-block;
 }
-  .Age {
+.Age {
     display: inline-block;
         margin-top: 10px;
         margin-left: 10px;
  }
- .Age_Icon {
+.Age_Icon {
     width: 20px;
     height: 20px;
     background-repeat: no-repeat;
     display: block;
     margin-bottom: 5px;
  }
- .Age_button{
+.Age_button{
     display: inline-block;
     vertical-align: top;
  }
 .Input_Value{
     display: inline-block;
+}
+
+.calculation {
+    width: 76px;
+    color: black;
+    background: linear-gradient(180deg, 
+   rgba(95, 168, 218, 1) 0%,
+   rgba(78, 151, 201, 1) 45%,
+   rgba(20, 108, 168, 1) 100%);
+    border-radius: 5px;
+    margin-top: 20px;
 }
     </style>   
        
@@ -176,36 +183,26 @@
     </head>
     <body>
         <div class="Entire-Page">
-<button class="Button-dose-calculator"> DOSE- CALCULATOR </button>
+        <button class="Button-dose-calculator"> DOSE- CALCULATOR </button>
         <button class="Button-weight-based-calc">
-            Weight Based Calculation
+        Weight Based Calculation
         </button>
 
         <div class="Input-card">
             <div class="DRUG">
                 <img class="Drug-icon" src="Images_and_inputs/Drug_icon.png">
                 <button class="DRUG-button">
-                    DRUG:
+                DRUG:
                 </button>
                 <div class="custom-dropdown">
                     <input class="Input-Box" type="text" placeholder="Select Drug">
                     <div class="dropdown-list">
-                        <p>Amoxicillin</p>
-                        <p>Azithromycin</p>
-                        <p>Budesolide</p>
-                        <p>Cefixime</p>
-                        <p>Dextrometharphan</p>
-                        <p>Ibuprofen</p>
-                        <p>Mefenamic Acid</p>
-                        <p>Ondensatron</p>
-                        <p>Paracetamol</p>
-                        <p>Salbutamol</p>
                     </div>
                 </div>
             </div>
 
             <div class="DOSAGE_FORM">
-                <img class="Dosage_Form_Icon" src="/Images_and_inputs/Dosage_form_icon.png">
+                <img class="Dosage_form_Icon" src="Images_and_inputs/medicine.png">
                 <button class="Dosage_Form_button">
                     Dosage Form:
                 </button>
@@ -224,17 +221,17 @@
             </div>
         
              <div class="Weight">
-                <img class="Weight_Icon" src="/Images_and_inputs/Weight_icon.png">
+                <img class="Weight_Icon" src="Images_and_inputs/weight.png">
                 <button class="Weight_button">
                     Weight:
                 </button>
                 <div class="Input_Value">
-                    <input class="Input-Box" type="number" placeholder=" Kg">     
+                    <input class="Input-Box_W" type="number" placeholder=" Kg">     
                 </div>
             </div>
 
              <div class="Age">
-                <img class="Age_Icon" src="/Images_and_inputs/Age_icon.png">
+                <img class="Age_Icon" src="Images_and_inputs/age.png">
                 <button class="Age_button">
                     Age:
                 </button>
@@ -244,10 +241,15 @@
                 </div>
             </div>
 
+            <div>
+                <button class = "calculation" onclick="window.location.href='output.html'"> Calculate</button>
+            </div>
+
             <script>
                 const dropdown = document.querySelector('.custom-dropdown');
                 let start = 20;
                 let end = 40;
+                
                 const drugs = [
                     {
                         name: 'Amoxicillin',
@@ -255,77 +257,84 @@
                         end: 40,
 // The length of the array is (end - start + 1)
                         standard_dose: Array.from({ length: 21},(_, index) => start + index),
-                        frequency: 'BID',
-                        max_dose: 'Maximum dose is 3 g/day.'
+                        frequency: "BID",
+                        max_dose : "Maximum dose is 3 g/day.",
+                        additional_Note: "N/A"
                     },
                         
                     {
                         name: 'Azithromycin',
-                        standard_dose: 10 + 'mg/kg/day',
+                        standard_dose: 10,
                         frequency: 'Once a day',
                         max_dose: 'Maximum dose is 3 g/day.',
                         additional_Note: 'Course duration is 3 or 5 days.'
                     },
                     {
                         name: 'Cefixime',
-                        standard_dose: 8-12 + 'mg/kg/day',
+                        standard_dose: 8,
                         frequency: 'Once a day',
                         max_dose: 'Maximum dose is 400 mg/day.'
                     },
                     {
                         name: 'Cefotaxime',
-                        standard_dose: 100 - 150 + 'mg/kg/day',
+                        standard_dose: 100,
                         frequency: 'Once a day',
                         max_dose: 'Maximum dose is 12g/day.' 
                     },
                     {
                         name: 'Clarithromycin',
-                        standard_dose: 7.5 + 'mg/kg/dose',
+                        standard_dose: 7.5,
                         frequency: 'BID',
                         max_dose: 'Maximum dose is 1 g/day.'
                     },
                     {
                         name: 'Ceftriaxone',
-                        standard_dose: 50 - 100 + 'mg/kg/dose',
+                        standard_dose: 50,
                         frequency: 'BID',
                         max_dose: 'Maximum dose is 4g/day.',
                         additional_Note: 'Avoid in Neonates.'
                     },
                     {
                         name: 'Domperidone',
-                        standard_dose: 0.2 - 0.4 + 'mg/kg/dose',
+                        standard_dose: 0.2,
                         frequency: 'BID',
                         max_dose: 'Maximum dose is 30 mg/day.',
                         additional_Note: 'Avoid long term use.' 
                     },
                     {
                         name: 'Furosemide',
-                        standard_dose: 1 - 2 + 'mg/kg/dose',
+                        standard_dose: 1,
                         frequency: 'BID',
                         max_dose: 'Maximum dose is 6 mg/kg/day.',
                         additional_Note: 'Monitor electrolytes.' 
                     },
                     {
                         name: 'Gentamicin',
-                        standard_dose: 5 - 7.5 + 'mg/kg/dose',
+                        standard_dose: 5,
                         additional_Note: 'Adjust dose in kidney function disorder.'
                     },
                     {
                         name: 'Ibuprofen',
-                        standard_dose: 10 + 'mg/kg/dose',
+                        standard_dose: 10,
                         frequency: 'TID',
                         max_dose: 'Maximum dose is 40 mg/kg/day.',
                         additional_Note: 'Avoid in children less than 6 months.'
                     },
                     {
+                        name: 'Levocetrizine',
+                        standard_dose: 1,
+                        frequency: 'Once a day',    
+                        max_dose: 'Maximum dose is 5 mg/day.'
+                    },
+                    {
                         name: 'Levetiracetam',
-                        standard_dose: 20 - 60 + 'mg/kg/day',
+                        standard_dose: 20,
                         frequency: 'BID',
                         max_dose: 'Maximum dose is 3000 mg/day.'
                     },
                     {
                         name: 'Mefenamic Acid',
-                        standard_dose: 25 + 'mg/kg/day',
+                        standard_dose: 25,
                         frequency: 'BID',
                         max_dose: 'Maximum dose is 750 mg/day.',
                         additional_Note: 'Avoid in children less than 6 months.',
@@ -333,64 +342,89 @@
                     },
                     {
                         name: 'Ondensatron',
-                        standard_dose: 0.15 + 'mg/kg/dose',
+                        standard_dose: 0.15,
                         frequency: 'Once a day',
                         max_dose: 'Maximum dose is 16 mg/day.'
                     },
                     {
                         name: 'Paracetamol',
-                        standard_dose: 10 - 15 + 'mg/kg/dose',
+                        standard_dose: 10,
                         frequency: 'BID',
                         max_dose: 'Maximum dose is 60 mg/kg/day.'
                     },
                     {
                         name: 'Phenobarbital',
-                        standard_dose: 3 - 5 + 'mg/kg/dose',
+                        standard_dose: 3,
                         frequency: 'BID',
                         max_dose: 'Maximum dose is 180 mg/day.'
                     },
                     {
                         name: 'Phenytoin',
-                        standard_dose: 5-8 + 'mg/kg/dose',
+                        standard_dose: 5,
                         frequency: 'TID',
                         max_dose: 'Maximum dose is 300 mg/day.'
                     },
                     {
                         name: 'Salbutamol(inhaled)',
-                        standard_dose: 100 - 200 + 'mcg/dose',
+                        standard_dose: 100,
                         frequency: 'TID',
                         max_dose: 'Maximum dose is 800 mcg/day.',
                         additional_Note: 'Nebulisation: 0.15 mg/kg/dose.(min 2.5 mg)'
                     },
                     {
                         name: 'Valproate',
-                        standard_dose: 10- 60 + 'mg/kg/day',
+                        standard_dose: 10,
                         frequency: 'TID',
                         max_dose: 'Maximum dose is 60 mg/kg/day.',
                         additional_Note: 'Monitor liver function tests.'
                     },
                     {
                         name: 'Vancomycin',
-                        standard_dose: 10 - 40 + 'mg/kg/day',
+                        standard_dose: 10,
                         frequency: 'TID',
                         max_dose: 'Maximum dose is 2 g/day.',
                         additional_Note: 'Adjust dose in kidney function disorder.'
                     },
                     {
                         name: 'Zinc',
-                        standard_dose: 20 + 'mg/day',
+                        standard_dose: 20,
                         additional_Note: 'Use in acute diarrhoea for 10-14 days.'
                     }
 
                 ];
 
+                console.log(drugs);
+                console.log(drugs[0]?.frequency);
                 const inputBoxDrug = dropdown.querySelector('.Input-Box');
-                const inputBoxWeight = document.querySelector('.Input-Box[type="number"]');
-                let recommended_Dose = inputBoxDrug.standard_dose * inputBoxWeight.value;
-                const num = Number(inputBoxWeight.value);
-                drugs[0].standard_dose = 21;
-                const num2 = Number(drugs[0].standard_dose);
-                recommended_Dose = num * num2;
+                const inputBoxWeight = document.querySelector('.Input-Box_W[type="number"]');
+                let num = Number(inputBoxWeight.value);
+                let num2 = Number(drugs[0].standard_dose);
+
+                console.log(typeof(num));
+                console.log(typeof(num2));
+                let recommended_Dose;
+                let frequency01 = drugs[0]?.frequency;
+                let max_dose01 = drugs[0]?.max_dose;
+                let additional_Note01 = drugs[0]?.additional_Note;
+
+                    function recommendedDose(drugs) {
+                    let recommended_Dose = num * num2;
+                    
+                    let frequency01 =  drugs[0]?.frequency;
+                    let max_dose01 =  drugs[0]?.max_dose;
+                    let additional_Note01 = drugs[0]?.additional_Note;
+                    return recommended_Dose + " mg per day " + frequency01 + "," + max_dose01 + "," + additional_Note01;
+
+                    
+                }
+                num = 12;
+                num2 = 22;
+             
+                console.log(recommendedDose(inputBoxDrug.value = drugs[0].name,),
+                    frequency01,
+                    max_dose01,
+                    additional_Note01);
+                
 
                     if (inputBoxDrug.value ===drugs[0].name) {
                         console.log("Recommended Dose:" + recommended_Dose + "mg per day," +
@@ -410,9 +444,7 @@
                     
                     console.log(Number(inputBoxWeight.value = '18'));
                     console.log(inputBoxDrug.value=drugs[0].name);
-                    console.log(typeof(drugs[0].standard_dose));
-                    console.log(typeof(inputBoxWeight.value));
-                    console.log(typeof(recommended_Dose));
+ 
 
                     
 
