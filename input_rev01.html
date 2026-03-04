@@ -66,7 +66,7 @@
  .Input-card {
     background-color: #F3FBFF;
     width: 324px;
-    height: 670px;
+    height: 295px;
     border-radius: 23px;
     border-color: black;
     border-width: 1px;
@@ -191,31 +191,57 @@
         <div class="Input-card">
             <div class="DRUG">
                 <img class="Drug-icon" src="Images_and_inputs/Drug_icon.png">
-                <button class="DRUG-button">
+                <label class="DRUG-button" for="drugInput">
                 DRUG:
-                </button>
+                </label>
                 <div class="custom-dropdown">
-                    <input class="Input-Box" type="text" placeholder="Select Drug">
+                    <input id="drugInput" class="Input-Box" type="text" placeholder="Select Drug" list="drugList">
                     <div class="dropdown-list">
+                        <datalist id="drugList">
+                            <option value="Amoxicillin">
+                            <option value="Azithromycin">
+                            <option value="Cefixime">
+                            <option value="Cefotaxime">
+                            <option value="Clarithromycin">
+                            <option value="Ceftriaxone">
+                            <option value="Domperidone">
+                            <option value="Furosemide">
+                            <option value="Gentamycin">
+                            <option value="Ibuprofen">
+                            <option value="Levocetirizine">
+                            <option value="Levetiracetam">
+                            <option value="Mefenamic acid">
+                            <option value="Ondensetron">
+                            <option value="Paracetamol">
+                            <option value="Phenobarbital">
+                            <option value="Phenytoin">
+                            <option value="Salbutamol(Inhaled)">
+                            <option value="Valproate">
+                            <option value="Vancomycin">
+                            <option value="Zinc">
+                        </datalist>
                     </div>
                 </div>
             </div>
 
             <div class="DOSAGE_FORM">
                 <img class="Dosage_form_Icon" src="Images_and_inputs/medicine.png">
-                <button class="Dosage_Form_button">
+                <label class="Dosage_Form_button" for="dosageformInput">
                     Dosage Form:
-                </button>
+                </label>
                 <div class="custom-dropdown">
-                    <input class="Input-Box" type="text" placeholder="Dosage Form">
+                    <input id="dosageformInput" class="Input-Box" type="text" placeholder="Dosage Form" list="dosageformList">
                     <div class="dropdown-list">
-                        <p>Tablet</p>
-                        <p>Capsule</p>
-                        <p>Suspenion</p>
-                        <p>Powd. for Susp.</p>
-                        <p>Syrup</p>
-                        <p>Drops</p>
-                        <p>Injection</p>
+                        <datalist id="dosageformList">
+                        <option value="Tablet">
+                        <option value="Capsule">
+                        <option value="Suspension">
+                        <option value="Powd. for Suspension">
+                        <option value="Syrup">
+                        <option value="Drops">
+                        <option value="Injection">
+                        </datalist>
+                        
                     </div>       
                 </div>
             </div>
@@ -444,13 +470,6 @@
                     
                     console.log(Number(inputBoxWeight.value = '18'));
                     console.log(inputBoxDrug.value=drugs[0].name);
- 
-
-                    
-
-                    
-                    
-
             </script>
     </body>
 </html>
