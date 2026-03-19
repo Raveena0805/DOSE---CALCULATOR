@@ -258,10 +258,10 @@
     </div>
 
     <div class="custom-dropdown">
-      <button class="Button-Title">
+      <button id= "buttontitle" class="Button-Title">
       Standard Weight Range As Per Age &#9660;
       </button>
-    <div class="dropdown-list">
+    <div id = "dropdownlist" class="dropdown-list">
 
       <div class="Age" style="background-color: #EDF4F6;">New Born (0-1m)</div>
       <div class="Weight" style="background-color: #EDF4F6;">3-4 kg</div>
@@ -323,7 +323,14 @@
   </div>
 
   <script>
-    alert ('dose-calculator is for educational purpose only.')
+    alert ('dose-calculator is for educational purpose only.');
+      const button = document.getelementbyID('buttontitle');
+      const table = document.getelementbyID('dropdownlist');
+      button.addEventListener('click', function(event) {
+          table.style.display = 'block';
+          event.stopPropagation();
+      });
+      
     let Container= document.querySelector(".custom-dropdown");
     Container.addEventListener("click",function(){
     if (Container.classList.contains("active")) {
