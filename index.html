@@ -330,6 +330,12 @@
           table.style.display = 'block';
           event.stopPropagation();
       });
+      table.addEventListener('click', function(event) {
+          event.stopPropagation();
+      });
+      window.addEventListener('click', function() {
+          table.style.display = 'none';
+      });
       
     let Container= document.querySelector(".custom-dropdown");
     Container.addEventListener("click",function(){
