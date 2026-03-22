@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>DOSE-CALCULATOR</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,9 +27,8 @@
       .Entire-Page {
         width: 360px;
         height: 800px; 
-        display: flexbox;
-        justify-content:center;
-        justify-content: center;
+        display: block;
+       
       }
       .Button-dose-calculator {
         background-color: #2E7DA4;
@@ -190,36 +191,44 @@
         position: absolute;
         overflow-y: auto;
         grid-auto-flow: row;
-        max-height: 90px;
+        max-height: 115px;
         border-radius: 2px;
         scrollbar-width: none;
         scroll-behavior: smooth;
-        inline-size: 250px;
+        inline-size: 265px;
       }
 
       .Age .Weight {
         font-family: sans-serif;
         font-size: 12px;
         font-style: InstrumentSerif-Regular;
-        padding: 5px;
+        padding: 6px;
         background-color: #EDF4F6;
         border: none;
         display: flexbox;
       }
 
       .Weight {
-        text-align: center;
+        text-align: right;
+        align-self: self-start;
+        padding-right: 5px;
+        inline-size: 260px;
       }
 
       .Age{
         text-align: 10px;
+        align-self: self-start;
+        padding-left: 5px;
+        inline-size: 260px;
+        
       }
 
       .custom-dropdown .dropdown-list{
-        opacity: 0;
+        display: none;;
       }
 
-      .custom-dropdown:active .dropdown-list {
+      .custom-dropdown.is-open .dropdown-list {
+        display: block;
         opacity: 1;
         transition: opacity 0.3s move-in;
       }
@@ -234,12 +243,21 @@
         display: flex;
         text-align: center;
       }
+
+    .Entire-Page {
+      background-image: url(Images_and_inputs/BG001.png),url(Images_and_inputs/BG003.png), url(Images_and_inputs/BG002.png)
+      ;
+      background-position: top left, bottom right, center;
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-size: 200px 200px, 150px 150px, 150px 150px;
+    }
     </style>
     
 </head>
 
 <body>
   <div class="Entire-Page">
+        
     <button class="Button-dose-calculator"> DOSE- CALCULATOR </button>
 
     <div class="Weight-Based-Div">
@@ -258,10 +276,10 @@
     </div>
 
     <div class="custom-dropdown">
-      <button id= "buttontitle" class="Button-Title">
+      <buttonlabel for="standardWeight"class="Button-Title">
       Standard Weight Range As Per Age &#9660;
-      </button>
-    <div id = "dropdownlist" class="dropdown-list">
+      </buttonlabel>
+    <div class="dropdown-list" id="standardWeight">
 
       <div class="Age" style="background-color: #EDF4F6;">New Born (0-1m)</div>
       <div class="Weight" style="background-color: #EDF4F6;">3-4 kg</div>
@@ -323,29 +341,23 @@
   </div>
 
   <script>
-    alert ('dose-calculator is for educational purpose only.');
-      const button = document.getelementbyID('buttontitle');
-      const table = document.getelementbyID('dropdownlist');
-      button.addEventListener('click', function(event) {
-          table.style.display = 'block';
-          event.stopPropagation();
-      });
-      table.addEventListener('click', function(event) {
-          event.stopPropagation();
-      });
-      window.addEventListener('click', function() {
-          table.style.display = 'none';
-      });
-      
-    let Container= document.querySelector(".custom-dropdown");
-    Container.addEventListener("click",function(){
-    if (Container.classList.contains("active")) {
-      Container.classList.add("active");
-    }
+    alert ('dose-calculator is for educational purpose only.')
+  
+    const container = document.querySelector('.custom-dropdown');
+    const btn = document.querySelector('.buttonlabel');
+    const dropdownList = document.querySelector('.dropdown-list');
+
+    document.addEventListener('click', (event) => {
+
+      container.classList.toggle('is-open');
+    });
+
+     document.addEventListener('click', (event) => {
+      if (!container.contains(event.target)) {
+        container.classList.remove('is-open');
+      }
     });
      
   </script>
 </body>
 </html>
-
-
