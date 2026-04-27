@@ -42,6 +42,7 @@
         margin-top: 50px;
         cursor: pointer;
         align-items: center;
+        margin-left: 20px;
  }
  .Output-Card {
     background-color: #F3FBFF;
@@ -54,48 +55,203 @@
     margin-bottom: 10px;
 
  }
- .Dose {
+
+ .drug_dose {
+    display: grid;
+        grid-template-columns: repeat(2, 1fr );
+        column-gap: 0px;
+        row-gap: 0px;
+        grid-auto-rows: minmax(15px, auto);
+        position: absolute;
     margin-top: 25px;
+    margin-left: 10px;
+    width: 280px;
+    align-self: self-start;
+ }
+
+ .Dose {
+    background-color: none;
+    width: 80px;
+    height: 31px;
+    display: block;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+    align-self: self-start;
  }
  .dose_title {
     background-color: none;
-    width: 84px;
+    width: 80px;
     height: 31px;
     display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     margin-left: 5px;
     margin-right: 5px;
+    align-self: self-start;
+
  }
+ .dose_value {
+    background-color: none;
+    width: 80px;
+    height: 31px;
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+    align-self: self-start;
+ }
+
+
+ .drug_frequency {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr );
+    column-gap: 0px;
+    row-gap: 0px;
+    grid-auto-rows: minmax(15px, auto);
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 15px;
+    width: 280px;
+    align-self: self-start;
+ }
+
  .frequency {
     background-color: none;
-    width: 84px;
+    width: 80px;
     height: 31px;
     display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     margin-left: 5px;
     margin-right: 5px;
+    align-self: self-start;
  }
+
+ .frequency_title {
+    background-color: none;
+    width: 80px;
+    height: 31px;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 2px;
+    margin-right: 5px;
+    align-self: self-start;
+
+ }
+ .frequency_value {
+    background-color: none;
+    width: 80px;
+    height: 31px;
+    display: block;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    margin-left: 1px;
+    margin-right: 5px;
+    align-self: self-start;
+
+ }
+
+ .drug_max_dose {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr );
+    column-gap: 0px;
+    row-gap: 0px;
+    grid-auto-rows: minmax(15px, auto);
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 15px;
+    width: 280px;
+    align-self: self-start;
+ }
+
  .max_dose {
     background-color: none;
-    width: 84px;
+    width: 80px;
     height: 31px;
     display: block;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     margin-left: 5px;
     margin-right: 5px;
+    align-self: self-start;
  }
- .additional_Note {
+
+ .max_dose_title {
+     background-color: none;
+    width: 80px;
+    height: 35px;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 2px;
+    margin-right: 5px;
+    align-self: self-start;
+ }
+
+ .max_dose_value {
     background-color: none;
-    width: 84px;
     height: 31px;
     display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    margin-left: 1px;
+    margin-right: 5px;
+    align-self: self-start;
+
+ }
+
+ .drug_additional_Note {
+   display: grid;
+        grid-template-columns: repeat(2, 1fr );
+        column-gap: 0px;
+        row-gap: 0px;
+        grid-auto-rows: minmax(15px, auto);
+        position: absolute;
+    margin-top: 150px;
+    margin-left: 15px;
+    width: 280px;
+    align-self: self-start; 
+ }
+
+ .additional_Note_title {
+    background-color: none;
+    color: red;
+    height: 35px;
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 15px;
     margin-left: 5px;
     margin-right: 5px;
+    align-self: self-start;
+ }
+ .additional_note {
+    background-color: none;
+    color: rgba(184, 71, 71, 0.845);
+    height: 31px;
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    margin-left: 1px;
+    margin-right: 5px;
+    align-self: self-start;
+ }
+
+ .Back_to_home {
+    height: 30px;
+    color: black;
+    font-weight: bold;
+    background: linear-gradient(180deg, 
+   rgba(95, 168, 218, 1) 0%,
+   rgb(37, 95, 134) 45%,
+   rgb(11, 51, 78) 100%);
+    border-radius: 5px;
+    margin-top: 320px;
+    align-items: center;
+margin-left: 100px;}
  }
 
         </style>
@@ -106,43 +262,73 @@
 
             <div class = Output-Card>
 
+                <div class="drug_dose">
                 <div class = Dose>
-                    <button class= dose_title>Dose: </button>
+                    <button id = "dose_title" class= dose_title>Dose: </button>
+                </div>
+                <div id = "dose" class="dose_value"></div>
                 </div>
 
+                <div class="drug_frequency">
                 <div class="frequency">
-                    <button id="frequency">Frequency: </button>
+                    <button id="frequency_title" class="frequency_title">Frequency: 
+                    </button>
+                </div>
+                <div id = "frequency" class="frequency_value"></div>
                 </div>
 
+               <div class="drug_max_dose">
                 <div class="max_dose">
-                    <button id="max_dose">Max. Daily Dose: </button>
+                    <button id="max_dose_title" class = "max_dose_title">Max. Daily Dose: </button>
+                </div>
+                <div id = "max_dose" class="max_dose_value"></div>
+               </div>
+                
+                <div class="drug_additional_Note">
+                    <p id="additional_Note_title" class="additional_Note_title"> Safety Instructions: </p>
+                    <div id="additional_note" class="additional_note">
+                    </div>
                 </div>
 
-                <div class="additional_Note">
-                    <p id="additional_Note"> Safety Instructions: </p>
-                </div>
-
-            </div>
+                
 
             <button class="Back_to_home" onclick="window.location.href= 'index.html'"> Back to Home </button>
 
-            <div id="result"></div>
+           <div id="result"></div>
         </div>
+        <h1 id="result"></h1>
+
         
 
             <script>
+              window.onload = function () {
+  document.getElementById("result").innerText =
+    localStorage.getItem("test");
+};
 
             let drug = localStorage.getItem("drug");
             let dose = localStorage.getItem("dose");
             let weight = localStorage.getItem("weight");
-            let dailydose = localStorage.getItem("daily dose");
+            let dailydose = localStorage.getItem("daily_dose");
             let frequency = localStorage.getItem("frequency");
             let max_dose = localStorage.getItem("max_dose");
             let additional_Note = localStorage.getItem("additional_Note");
 
-            document.getElementById("result").innerText = `Output: 
-            Daily Dose: ${dailydose} mg`;
-                
+            window.onload = function() {
+                document.getElementById("dose").innerText = `${dailydose} mg`;
+                document.getElementById("frequency").innerText = frequency;
+                document.getElementById("max_dose").innerText = `${max_dose}`;
+                document.getElementById("additional_note").innerText = additional_Note;
+
+                //document.getElementById("result").innerText = `OUTPUT: 
+           // Dose: ${dailydose} mg, Frequency: ${frequency},
+            // Max Dose: ${max_dose}, Additional Note: ${additional_Note}
+           // `;
+            };
+            console.log(localStorage.getItem("drug"));
+            console.log("ALL STORAGE:", localStorage);
+            console.log("drug:", localStorage.getItem("drug"));
+            console.log("daily dose:", localStorage.getItem("daily_dose"));
 
             </script>
     </body>
