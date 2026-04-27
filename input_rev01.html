@@ -18,11 +18,12 @@
     align-items: center;
     justify-content: center;
     width: 360px;
-    height: 950px;  
+    height: 740px;  
 }
 .Entire-Page {
-    margin-left: 50px;
-    margin-bottom: 50px;
+    width: 360px;
+    height: 740px;
+    margin-left: 10px;
 }
 .Button-dose-calculator {
         background-color: #2E7DA4;
@@ -236,9 +237,14 @@
      
 }
 
-.calculation {
+.Calculate{
     width: 76px;
     height: 25px;
+}
+
+.calculation {
+    width: 76px;
+    height: 35px;
     color: black;
     background: linear-gradient(180deg, 
    rgba(95, 168, 218, 1) 0%,
@@ -352,14 +358,15 @@ margin-left: 100px;}
         </div>
 
             <div class="Calculate">
-                <button type="button" onclick="calculateDose()" id="Calculation">Calculate</button>
+                <button type="button" onclick="calculateDose()" id="Calculation" class="calculation">Calculate</button>
             </div>
             <div id = "result">
             </div>
+         
+
 
             <script>
-
-                const standarddose = [
+                const standarddose  = [
                     {drug: "Amoxicillin", dose: 20, frequency: "BID",
                         max_dose : "Maximum dose is 3 g/day.",
                         additional_Note: "N/A"},
@@ -427,31 +434,49 @@ margin-left: 100px;}
                         additional_Note: "Use in acute diarrhoea for 10-14 days."}                                                 
                 ]
 
+                //console.log("Array:", standarddose);
+                //console.log(standarddose[0].dose);
+
                 let weight = Number(document.getElementById("weightvalue").value);
+               document.getElementById("drugInput").addEventListener("change", () => { 
                 let drug = document.getElementById("drugInput").value;
-                let selecteddrug= standarddose.find(d => d.drug === drug);
-               let dose = selecteddrug.dose;
-               let frequency = selecteddrug.frequency;
+                
+                let selecteddrug = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim());
+                let dose = selecteddrug.dose;
+                let frequency = selecteddrug.frequency;
                let max_dose = selecteddrug.max_dose;
                let additional_Note = selecteddrug.additional_Note;
                let dailydose = weight*dose;
-
-               function calculateDose() {
+                });
                 
-                selecteddrug= standarddose.find(d => d.drug === drug);
+               // let drug = document.getElementById("drugInput").value;
+               // let selecteddrug= standarddose.find(d => d.drug === drug);
+             //  let dose = selecteddrug.dose;
+
+               
+               function calculateDose() {
+               // console.log("Calculate button clicked");
+
+              //  document.getElementById("drugInput").addEventListener("change", () => { 
+               drug = document.getElementById("drugInput").value;
+               console.log(drug);
+               
+                
+                selecteddrug = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim());
+                dose = selecteddrug.dose;
                 weight = Number(document.getElementById("weightvalue").value);
-                drug = document.getElementById("drugInput").value;
-                drugdose = selecteddrug.dose;
-                frequency = selecteddrug.frequency;
+                frequency = selecteddrug.frequency
                 max_dose = selecteddrug.max_dose;
                 additional_Note = selecteddrug.additional_Note;
                 dailydose = weight*dose;
-            
-              if (selecteddrug && weight >0) {
+
+                if (selecteddrug && weight >0) {
                 dailydose = weight*dose;
                 console.log(`Dose: ${dailydose} mg, Frequency: ${frequency},
                  Max Dose: ${max_dose}, Additional Note: ${additional_Note}
                 `);
+              } else if  (!selecteddrug) {
+                console.log("Please select a drug.")
               }
                else {
                 console.log("Please select a drug and enter a valid weight.");
@@ -463,16 +488,27 @@ margin-left: 100px;}
              Max Dose: ${max_dose}, Additional Note: ${additional_Note}
             `;
 
+            console.log("function triggered");
+            console.log(selecteddrug);
             localStorage.setItem("drug", selecteddrug.drug);
             localStorage.setItem("dose", selecteddrug.dose);
             localStorage.setItem("weight", weight);
-            localStorage.setItem("daily dose", dailydose);
+            localStorage.setItem("daily_dose", dailydose);
             localStorage.setItem("frequency", frequency);
             localStorage.setItem("max_dose", max_dose);
             localStorage.setItem("additional_Note", additional_Note);
 
-            window.location.href = "output.html";    
-            }
+            window.location.href = "output.html"; 
+            };
+            
+            
+                
+               
+              //  selecteddosageform = Array.from(dosageform).find(d => d.dosageform === dosageform);
+                
+               // drug = document.getElementById("drugInput").value;
+               // drugdose = selecteddrug.dose;
+
 
 
                
