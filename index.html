@@ -20,13 +20,13 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         width: 360px;
-        height: 800px;  
+        height: 740px;  
        
 
       }
       .Entire-Page {
         width: 360px;
-        height: 800px; 
+        height: 740px; 
         display: block;
        
       }
@@ -149,7 +149,6 @@
       }
 
       .custom-dropdown {
-        background-color: none;
         width: 270px;
         height: 30px;
         margin-bottom: 350px;
@@ -158,6 +157,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
+        cursor: pointer;
       }
 
       .Button-Title{
@@ -224,7 +224,7 @@
       }
 
       .custom-dropdown .dropdown-list{
-        display: none;;
+        display: none;
       }
 
       .custom-dropdown.is-open .dropdown-list {
@@ -261,7 +261,7 @@
     <button class="Button-dose-calculator"> DOSE- CALCULATOR </button>
 
     <div class="Weight-Based-Div">
-      <button class="Button-weight-based" onclick="window.location.href='input_rev01.html'">Weight Based
+      <button class="Button-weight-based" onclick="window.location.href='input_rev01_weightbased.html'">Weight Based
       </button>
       <button class="Button-Formula-weight-based">
       Dose (mg) = mg/kg × Weight (kg)
@@ -269,7 +269,7 @@
     </div>
 
     <div class="Body-Surface-Div">
-      <button class="Button-Body-Surface"> Body Surface Based </button>
+      <button class="Button-Body-Surface" onclick="window.location.href= 'input_rev01_bodysurfacebased.html'"> Body Surface Based </button>
       <button class="Formula-Body-surface-based">
       Sq.rt([Height(cm) × Weight(kg)] / 3600)
       </button>
