@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>DOSE_CALCULATOR_INPUT</title>
+    <style>
+ body {
+    background: linear-gradient(
+        180deg,
+        rgba(118, 194, 222, 0.25) 0%,
+    rgba(83, 156, 183, 0.40) 25%,
+    rgba(170, 211, 226, 0.5) 50%,
+    rgba(63, 123, 145, 0.75) 75%,
+    rgba(29, 68, 82, 1) 100%
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 360px;
+    height: 950px;  
+}
+.Entire-Page {
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+.Button-dose-calculator {
+        background-color: #2E7DA4;
+        color: black;
+        height: 70px;
+        width: 270px;
+        padding: 6px;
+        font-weight: bolder;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 24px;
+        border-width: 2px;
+        border-color: black;
+        border-radius: 5px;
+        border-style: solid;
+        display: block;
+        margin-bottom: 50px;  
+        margin-top: 50px;
+        cursor: pointer;
+        margin-left: 28px;
+ }
+
+ .Button-BodySurface-based-calc {
+    background-color: #8AADBC;
+    color: black;
+    height: 63px;
+    width: 300px;
+    padding: 6px;
+    font-family: source serif pro;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 3px;
+    border-color: rgba(11, 65, 92, 0.8);
+    border-width: 3px;
+    border-style: solid;
+    display: block;
+    margin-bottom: 50px;  
+    margin-top: 50px;
+    margin-left: 15px;
+    cursor: pointer;
+    align-items: center;   
+ }
+ .Input-card {
+    display: grid;
+     grid-template-columns: repeat(1, 1fr );
+     grid-template-rows: repeat(4,1fr);
+     grid-auto-flow: column;
+    background-color: #F3FBFF;
+    width: 324px;
+    height: 305px;
+    border-radius: 23px;
+    border-color: black;
+    border-width: 1px;
+    box-shadow: 4px 5px 6px 2px rgba(106, 118, 123, 1);
+    margin-bottom: 20px;
+ }
+ .DRUG {
+    display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 0px;
+ }
+ .drugiconlabel{
+    display: inline-block;
+    
+ }
+ .Drug-icon{
+    width: 14px;
+    height: 22px;
+    background-repeat: no-repeat;
+    display: block;
+    margin-bottom: 5px;
+ }
+ .DRUG-button{
+    vertical-align: top;
+    margin-right: 50px;
+ }
+.custom-dropdown{
+    display: inline-block;
+    margin-bottom: 5px; 
+   margin-left: 10px;
+    width: 150px;
+    height: 30px;
+    border-radius: 2px;
+    align-self: self-start;
+}
+.Input-Box {
+    height: 21px;
+
+}
+.dropdown-list {
+    overflow-y:auto;
+    max-height: 200px;
+    opacity: 0;
+}
+
+.custom-dropdown:active .dropdown-list{
+    opacity: 1;
+}
+
+ .DOSAGE_FORM {
+    display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+ }
+ .Dosage_form_Icon {
+    width: 20px;
+    height: 22px;
+    background-repeat: no-repeat;
+    display: block;
+    margin-bottom: 5px;
+ }
+ .Dosage_Form_button{
+    display: inline-block;
+    vertical-align: top;
+    
+ }
+ .Input-Box-DF {
+    display: inline-block;
+    margin-bottom: 5px; 
+   margin-left: 10px;
+    width: 150px;
+    height: 21px;
+    border-radius: 2px;
+    align-self: self-start;
+ }
+.custom-dropdown{
+    display: inline-block;
+}
+.dropdown-list {
+    overflow-y:auto;
+    max-height: 200px;
+}
+
+ .Weight {
+    display: inline-block;
+        margin-top: 10px;
+        margin-left: 10px;
+ }
+ .Weighticonlabel{
+    display: inline-block;
+ }
+ .Weight_Icon {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    display: block;
+    margin-bottom: 5px;
+ }
+ .Weight_button{
+    display: inline-block;
+    vertical-align: top;
+ }
+.Input_Value{
+    display: inline-block;
+    margin-left: 50px;
+    width: 150px;
+    height: 21px;
+}
+.Input-Box_W {
+    display: inline-block;
+    margin-bottom: 5px; 
+   margin-left: 10px;
+    width: 150px;
+    height: 21px;
+    border-radius: 2px;
+    align-self: self-start;
+}
+.heighticonlabel {
+    display: inline-block;
+}
+.height {
+    display: inline-block;
+        margin-top: 20px;
+        margin-left: 10px;
+        height: 314px;
+        width: 64px;
+ }
+.Height_Icon {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    display: block;
+    margin-bottom: 5px;
+ }
+.height_button{
+    display: inline-block;
+    vertical-align: top;
+ }
+ .height_Input_Value {
+    display: inline-grid;
+    grid-template-columns: repeat(2, 0fr);
+    margin-left: 65px;
+    column-gap: 0px;
+    row-gap: 0px;
+    width: 150px;
+    height: 21px;
+    align-self:self-start;
+    position: absolute;
+    inline-size: 250px;
+    margin-top: 10px;
+ }
+.height_Input_Box{
+    display: inline-block;
+    margin-left: 0px;
+    width: 150px;
+    height: 21px;
+     border-radius: 2px;
+     
+}
+
+.Calculate {
+    display: block;
+    margin-top: 20px;
+    align-items: center;
+    align-content: center;
+    margin-left: 120px;
+}
+
+.Calculation {
+    width: 76px;
+    height: 25px;
+    color: black;
+    background: linear-gradient(180deg, 
+   rgba(95, 168, 218, 1) 0%,
+   rgba(78, 151, 201, 1) 45%,
+   rgba(20, 108, 168, 1) 100%);
+    border-radius: 5px;
+    margin-top: 20px;
+    align-items: center;
+    display: block;
+    align-content: center;
+    margin-left: 5px;}
+
+    </style>   
+       
+    </head>
+    <body>
+        <div class="Entire-Page">
+        
+        <button id = "title" class="Button-dose-calculator"> DOSE- CALCULATOR </button>
+        <button class="Button-BodySurface-based-calc">
+        Body Surface Based Calculation
+        </button>
+
+        <div class="Input-card">
+            <div class="DRUG">
+                <div class="drugiconlabel">
+                <img class="Drug-icon" src="Images_and_inputs/Drug_icon.png">
+                <label class="DRUG-button" for="drugInput">
+                DRUG:
+                </label>
+                </div>
+               
+                <div class="custom-dropdown">
+                    <input id="drugInput" class="Input-Box" type="text" placeholder="Select Drug" list="drugList">
+                    <div class="dropdown-list">
+                        <datalist id="drugList">
+                            <option value="Amoxicillin">
+                            <option value="Azithromycin">
+                            <option value="Cefixime">
+                            <option value="Cefotaxime">
+                            <option value="Clarithromycin">
+                            <option value="Ceftriaxone">
+                            <option value="Domperidone">
+                            <option value="Furosemide">
+                            <option value="Gentamycin">
+                            <option value="Ibuprofen">
+                            <option value="Levocetirizine">
+                            <option value="Levetiracetam">
+                            <option value="Mefenamic acid">
+                            <option value="Ondensetron">
+                            <option value="Paracetamol">
+                            <option value="Phenobarbital">
+                            <option value="Phenytoin">
+                            <option value="Salbutamol(Inhaled)">
+                            <option value="Valproate">
+                            <option value="Vancomycin">
+                            <option value="Zinc">
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+
+            <div class="DOSAGE_FORM">
+                <img class="Dosage_form_Icon" src="Images_and_inputs/medicine.png">
+                <label class="Dosage_Form_button" for="dosageformInput">
+                    Dosage Form:
+                </label>
+                <div class="custom-dropdown">
+                    <input id="dosageformInput" class="Input-Box-DF" type="text" placeholder="Dosage Form" list="dosageformList">
+                    <div class="dropdown-list">
+                        <datalist id="dosageformList">
+                        <option value="Tablet">
+                        <option value="Capsule">
+                        <option value="Suspension">
+                        <option value="Powd. for Suspension">
+                        <option value="Syrup">
+                        <option value="Drops">
+                        <option value="Injection">
+                        </datalist>
+                        
+                    </div>       
+                </div>
+            </div>
+        
+             <div class="Weight">
+                <div class="Weighticonlabel">
+                <img class="Weight_Icon" src="Images_and_inputs/weight.png">
+                <label class="Weight_button">
+                    Weight:
+                </label>
+                </div>
+                
+                <div class="Input_Value">
+                    <input class="Input-Box_W" type="number" placeholder=" Kg" id="weightvalue">     
+                </div>
+            </div>
+
+             <div class="height">
+                <div class="heighticonlabel">
+                <img class="Height_Icon" src="Images_and_inputs/height.png">
+                <label
+                 class="height_button">
+                    Height:
+                </label>
+                </div>
+                
+                <div class="height_Input_Value">
+                    <input class="height_Input_Box" type="number" placeholder=" cm" id="heightvalue">
+                </div>
+            </div>
+
+        </div>
+
+            <div class="Calculate">
+                <button class="Calculation" type="button" onclick="calculateDose()" id="Calculation">Calculate</button>
+            </div>
+            <div id = "result">
+            </div>
+
+            <script>
+
+                const standarddose = [
+                    {drug: "Amoxicillin", dose: 20, frequency: "BID",
+                        max_dose : "Maximum dose is 3 g/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Azithromycin", dose: 10, frequency: "QD",
+                        max_dose : "Maximum dose is 500 mg/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Cefixime", dose: 8, frequency: "Once a Day",
+                        max_dose : "Maximum dose is 400 mg/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Cefotaxime", dose: 100, frequency: "Once a Day",
+                        max_dose : "Maximum dose is 12 g/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Clarithromycin", dose: 7.5, frequency: "BID",
+                        max_dose : "Maximum dose is 1 g/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Ceftriaxone", dose: 50, frequency: "BID",
+                        max_dose : "Maximum dose is 4 g/day.",
+                        additional_Note: "Avoid in Neonates."},
+                    {drug: "Domperidone", dose: 0.2, frequency: "BID",
+                        max_dose : "Maximum dose is 30 mg/day.",
+                        additional_Note: "Avoid long term use."},
+                    {drug: "Furosemide", dose: 1, frequency: "BID",
+                        max_dose : "Maximum dose is 6 mg/kg/day.",
+                        additional_Note: "Monitor electrolytes."},
+                    {drug: "Gentamicin", dose: 5, frequency: "Thrice a day",
+                        max_dose : "Maximum dose is 5 mg/kg/day.",
+                        additional_Note: "Monitor renal function."},
+                    {drug: "Ibuprofen", dose: 10, frequency: "TID",
+                        max_dose : "Maximum dose is 40 mg/kg/day.",
+                        additional_Note: "Monitor gastrointestinal function., Avoid in children less than 6 months."},
+                    {drug: "Levocetirizine", dose: 1, frequency: "Once a day",
+                        max_dose : "Maximum dose is 5 mg/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Levetiracetam", dose: 20, frequency: "BID",
+                        max_dose : "Maximum dose is 3000 mg/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Mefenamic acid", dose: 25, frequency: "BID",
+                        max_dose : "Maximum dose is 750 mg/day.",
+                        additional_Note: `Monitor gastrointestinal function.
+                        Avoid in children less than 6 months.
+                        Should be used for short term only(less than 7 days).`},
+                    {drug: "Ondensetron", dose: 0.15, frequency: "Once a day",
+                        max_dose : "Maximum dose is 1.5 mg/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Paracetamol", dose: 10, frequency: "BID",
+                        max_dose : "Maximum dose is 60 mg/kg/day.",
+                        additional_Note: "Monitor liver function."},
+                    {drug: "Phenobarbital", dose: 3, frequency: "BID",
+                        max_dose : "Maximum dose is 180 mg/day.",
+                        additional_Note: "N/A"},
+                    {drug: "Phenytoin", dose: 5, frequency: "TID",  
+                        max_dose : "Maximum dose is 300 mg/day.",
+                        additional_Note: "N/A"}, 
+                    {drug: "Salbutamol(Inhaled)", dose: 100, frequency: "TID",
+                        max_dose : "Maximum dose is 800 mcg/day.",
+                        additional_Note: "Nebulisation: 0.15 mg/kg/dose.(min 2.5 mg)"},
+                    {drug: "Valproate", dose: 10, frequency: "TID",
+                        max_dose : "Maximum dose is 60 mg/kg/day.",
+                        additional_Note: "Monitor liver function tests."},  
+                    {drug: "Vancomycin", dose: 10, frequency: "TID",
+                        max_dose : "Maximum dose is 2 g/day.",
+                    additional_Note: "Adjust dose in kidney function disorder."},
+                    {drug: "Zinc", dose: 20, frequency: "Once a day",
+                        max_dose : "N/A",
+                        additional_Note: "Use in acute diarrhoea for 10-14 days."}                                                 
+                ]
+
+                let weight = Number(document.getElementById("weightvalue").value);
+                let drug = document.getElementById("drugInput").value;
+                let selecteddrug= standarddose.find(d => d.drug === drug);
+               let dose = selecteddrug.dose;
+               let height = Number(document.getElementById("heightvalue").value);
+               let frequency = selecteddrug.frequency;
+               let max_dose = selecteddrug.max_dose;
+               let additional_Note = selecteddrug.additional_Note;
+               let dailydose = Math.round(Math.sqrt((height*weight)/3600)*dose);
+
+               function calculateDose() {
+                
+                selecteddrug= standarddose.find(d => d.drug === drug);
+                weight = Number(document.getElementById("weightvalue").value);
+                drug = document.getElementById("drugInput").value;
+                drugdose = selecteddrug.dose;
+                height = Number(document.getElementById("heightvalue").value);
+                frequency = selecteddrug.frequency;
+                max_dose = selecteddrug.max_dose;
+                additional_Note = selecteddrug.additional_Note;
+                dailydose = Math.round(Math.sqrt((height*weight)/3600)*dose);
+            
+              if (selecteddrug && weight >0 && height >0) {
+                dailydose = Math.round(Math.sqrt((height*weight)/3600)*dose);
+                console.log(`Dose: ${dailydose} mg, Frequency: ${frequency},
+                 Max Dose: ${max_dose}, Additional Note: ${additional_Note}
+                `);
+              }
+               else {
+                console.log("Please select a drug and enter a valid weight.");
+               }
+               
+            
+            document.getElementById("result").innerText = `OUTPUT: 
+            Dose: ${dailydose} mg, Frequency: ${frequency},
+             Max Dose: ${max_dose}, Additional Note: ${additional_Note}
+            `;
+               }
+
+           /* localStorage.setItem("drug", selecteddrug.drug);
+            localStorage.setItem("dose", selecteddrug.dose);
+            localStorage.setItem("weight", weight);
+            localStorage.setItem("height", height);
+            localStorage.setItem("daily dose", dailydose);
+            localStorage.setItem("frequency", frequency);
+            localStorage.setItem("max_dose", max_dose);
+            localStorage.setItem("additional_Note", additional_Note);
+
+            window.location.href = "output.html";    
+            } */
+
+
+               
+
+            /*const list =  document.querySelector('dataList');
+              const druglist =  list.querySelectorAll('option');
+              druglist.forEach(function(option) {
+                option.style.color = "red";
+              })*/
+
+               
+               
+
+                /*console.log(drugs[1].name, drugs[0].frequency);
+                console.log(drugs);
+                console.log(drugs[0]?.frequency);*/
+
+               /* document.addEventListener('click', function () {
+                let inputBoxDrug = document.getElementById('drugInput').value;
+                const inputBoxWeight = document.getElementById('weightvalue').value;
+                const num = Number(inputBoxWeight);
+                let num2;
+                const selectedDrug = drugs.find(drug => drug.name === inputBoxDrug);
+
+                if ( selectedDrug && num > 0) {
+                    num2 = Number(selectedDrug.standard_dose);   
+                }
+
+                const recommended_dose = num * num2;
+                const Output = `Recommended Dose: ${recommended_dose} mg per day,
+                 Frequency: ${selectedDrug.frequency},
+                 Maximum Daily Dose: ${selectedDrug.max_dose},
+                 Additional Note: ${selectedDrug.additional_Note}`;
+               
+            });
+            
+            
+            
+
+                /*console.log(typeof(num));
+                console.log(typeof(num2));*/
+
+                
+                /* num = 12;
+                num2 = 22;
+             
+                console.log(Output(drugs[0]),
+                    frequency01,
+                    max_dose01,
+                    additional_Note01);
+
+                    console.log(Output(drugs[0]),
+                    frequency01,
+                    max_dose01,
+                    additional_Note01);*/
+                
+
+                    // if (inputBoxDrug.value ===drugs[0].name) {
+                    //     console.log("Recommended Dose:" + recommended_Dose + "mg per day," +
+                    //     "Frequency:" + drugs.frequency + ","+
+                    //     "Maximum Daily Dose:" + drugs.max_dose);
+                    // } else if (inputBoxDrug.value ===drugs[1].name)
+                    // {
+                    //     console.log(`Recommended Dose: ${inputBoxWeight.value * 10} mg per day,
+                    //     Frequency: ${drugs.frequency},
+                    //     Maximum Daily Dose: ${drugs.max_dose}
+                    //     Additional Note: ${drugs.additional_Note}`);
+                    // } else {
+                    //     console.log("Error: Drug Not Found!") ;
+
+                    // }
+
+                    
+                    // console.log(Number(inputBoxWeight.value = '18'));
+                    // console.log(inputBoxDrug.value=drugs[0].name);
+ 
+            </script>
+    </body>
+</html>
