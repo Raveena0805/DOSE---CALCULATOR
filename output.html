@@ -17,19 +17,22 @@
     justify-content: center;
     align-items: center;
     justify-content: center;
-    width: 360px;
-    height: 950px;  
+   max-width: 360px;
+   width: 100%;
+   max-height: 720px;  
+   height: 100%;
 }
 .Entire-Page {
-    margin-left: 50px;
-    margin-bottom: 50px;
+      width: 100%;
+        height: 100%; 
+        display: block;
 }
 .Button-dose-calculator {
         background-color: #2E7DA4;
         color: black;
         height: 70px;
-        width: 270;
-        padding: 6px;
+        width: 270px;
+        padding: 8px;
         font-weight: bolder;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 24px;
@@ -37,13 +40,16 @@
         border-color: black;
         border-radius: 5px;
         border-style: solid;
-        display: block;
+        display: flex;
+        align-items:center;
+        justify-content:center;
         margin-bottom: 50px;  
         margin-top: 50px;
+        margin-left: 40px;
+        margin-right: 30px;
+        inline-size: 250px;
         cursor: pointer;
-        align-items: center;
-        margin-left: 20px;
- }
+      }
  .Output-Card {
     background-color: #F3FBFF;
     width: 300px;
@@ -53,6 +59,8 @@
     border-width: 1px;
     box-shadow: 4px 5px 6px 2px rgba(106, 118, 123, 1);
     margin-bottom: 10px;
+    margin-left: 23px;
+    margin-right: 25px;
 
  }
 
@@ -241,8 +249,9 @@
  }
 
  .Back_to_home {
-    height: 30px;
+    height: 40px;
     color: black;
+    text-align: center;
     font-weight: bold;
     background: linear-gradient(180deg, 
    rgba(95, 168, 218, 1) 0%,
@@ -251,14 +260,15 @@
     border-radius: 5px;
     margin-top: 320px;
     align-items: center;
-margin-left: 100px;}
- }
+margin-left: 100px;
+font-size: 14px;
+}
 
         </style>
     </head>
     <body>
         <div class="Entire-Page">
-            <button class="Button-dose-calculator"> DOSE- CALCULATOR </button>
+            <button class="Button-dose-calculator"> DOSE-CALCULATOR </button>
 
             <div class = Output-Card>
 
@@ -266,7 +276,7 @@ margin-left: 100px;}
                 <div class = Dose>
                     <button id = "dose_title" class= dose_title>Dose: </button>
                 </div>
-                <div id = "dose" class="dose_value"></div>
+                <div id = "dose" class="dose_value" ></div>
                 </div>
 
                 <div class="drug_frequency">
@@ -294,41 +304,119 @@ margin-left: 100px;}
 
             <button class="Back_to_home" onclick="window.location.href= 'index.html'"> Back to Home </button>
 
-           <div id="result"></div>
         </div>
         <h1 id="result"></h1>
 
         
 
             <script>
-              window.onload = function () {
-  document.getElementById("result").innerText =
-    localStorage.getItem("test");
-};
+         //     window.onload = function () {
+  //document.getElementById("result").innerText =
+  //  localStorage.getItem("test");
+//};
 
+            let selecteddrug = JSON.parse(localStorage.getItem("selecteddrug"));
             let drug = localStorage.getItem("drug");
-            let dose = localStorage.getItem("dose");
-            let weight = localStorage.getItem("weight");
-            let dailydose = localStorage.getItem("daily_dose");
+            let dose = parseInt(localStorage.getItem("dose"));
+            let weight = parseInt(localStorage.getItem("weight"));
+            let dailydose = parseInt(localStorage.getItem("daily_dose"));
             let frequency = localStorage.getItem("frequency");
-            let max_dose = localStorage.getItem("max_dose");
+            let max_dose = parseInt(localStorage.getItem("max_dose"));
             let additional_Note = localStorage.getItem("additional_Note");
-
+           let dosageform = localStorage.getItem("dosageform");
+            let selecteddosageform = localStorage.getItem("selecteddosageform");
+            let selectedsyrupstrength = parseInt(localStorage.getItem("selectedsyrupstrength"));
+            let syrupstrength = JSON.parse(localStorage.getItem("syrup_strength"));
+            let mg = parseInt(localStorage.getItem("mg"));
+            let ml = parseInt(localStorage.getItem("ml"));
+           let dailydose_syrup  =parseInt(localStorage.getItem("syrupdose")); 
+             
+                  
+            //console.log(syrupstrength)
+          //  let selectedsyrupstrengthmg = JSON.parse(localStorage.getItem("selectedsyrupstrengthmg"));
+         //   let selectedsyrupstrengthml = JSON.parse(localStorage.getItem("selectedsyrupstrengthml"));
             window.onload = function() {
-                document.getElementById("dose").innerText = `${dailydose} mg`;
-                document.getElementById("frequency").innerText = frequency;
+           let selecteddrug = JSON.parse(localStorage.getItem("selecteddrug"));
+            let drug = localStorage.getItem("drug");
+            let dose = parseInt(localStorage.getItem("dose"));
+            let weight = parseInt(localStorage.getItem("weight"));
+            let dailydose = parseInt(localStorage.getItem("daily_dose"));
+            let frequency = localStorage.getItem("frequency");
+            let max_dose = parseInt(localStorage.getItem("max_dose"));
+            let additional_Note = localStorage.getItem("additional_Note");
+           let dosageform = localStorage.getItem("dosageform");
+            let selecteddosageform = localStorage.getItem("selecteddosageform");
+            let selectedsyrupstrength = parseInt(localStorage.getItem("selectedsyrupstrength"));
+            let  mg = parseInt(selectedsyrupstrength ? selectedsyrupstrength.split('/')[0] : null);
+              // console.log(typeof mg);
+              let ml = parseInt(selectedsyrupstrength ? selectedsyrupstrength.split('/')[1] : null);
+            let syrupstrength = JSON.parse(localStorage.getItem("syrup_strength"));
+          //  let mg = Number(localStorage.getItem("mg"));
+         //   let ml = Number(localStorage.getItem("ml"));
+           let dailydose_syrup  =parseInt(localStorage.getItem("syrupdose")); 
+           
+            };
+                  
+            window.onload = function() {
+           let selecteddrug = JSON.parse(localStorage.getItem("selecteddrug"));
+            let drug = localStorage.getItem("drug");
+            let dose = parseInt(localStorage.getItem("dose"));
+            let weight = parseInt(localStorage.getItem("weight"));
+            let dailydose = parseInt(localStorage.getItem("daily_dose"));
+            let frequency = localStorage.getItem("frequency");
+            let max_dose = parseInt(localStorage.getItem("max_dose"));
+            let additional_Note = localStorage.getItem("additional_Note");
+           let dosageform = localStorage.getItem("dosageform");
+           //console.log("dosageform", dosageform);
+            let selecteddosageform = localStorage.getItem("selecteddosageform");
+           // let selectedsyrupstrength = parseInt(localStorage.getItem("selectedsyrupstrength"));
+            let syrupstrength = JSON.parse(localStorage.getItem("syrup_strength"));
+            
+           let mg = parseInt(localStorage.getItem("mg"));
+           let ml = parseInt(localStorage.getItem("ml"));
+           let dailydose_syrup  = parseInt(localStorage.getItem("syrupdose")); 
+           console.log(typeof(mg));
+            console.log(typeof(ml));
+            console.log(typeof(selecteddrug));
+            console.log(typeof(selecteddosageform));
+          console.log(typeof(selectedsyrupstrength));
+            console.log(selectedsyrupstrength);
+            console.log("weight", typeof(weight));
+            console.log(typeof(dosageform));
+            console.log(typeof(selecteddosageform));  
+
+          //  if (selecteddrug === drug & weight >0 && dosageform === "Syrup") {
+                //  console.log(selecteddrug)};
+                  
+
+               if (selecteddrug === drug && weight >0 && (dosageform === "Tablet"|| dosageform === "Capsule")) {
+                  console.log(selecteddrug);
+               document.getElementById("dose").innerText = `${dailydose} mg`;
+                document.getElementById("frequency").innerText = `${frequency}`;
                 document.getElementById("max_dose").innerText = `${max_dose}`;
                 document.getElementById("additional_note").innerText = additional_Note;
-
-                //document.getElementById("result").innerText = `OUTPUT: 
-           // Dose: ${dailydose} mg, Frequency: ${frequency},
-            // Max Dose: ${max_dose}, Additional Note: ${additional_Note}
-           // `;
+               } else if (selecteddrug === drug && weight >0 && (dosageform === "Syrup"||dosageform === "Suspension" || dosageform === "Powd. for Suspension") ) {
+                 console.log(selecteddrug);
+               document.getElementById("dose").innerText = `${dailydose_syrup} ml`;
+               document.getElementById("frequency").innerText = `${frequency}`;
+               document.getElementById("max_dose").innerText = `${max_dose}`;
+               document.getElementById("additional_note").innerText = additional_Note;
+               }
+                
+               // document.getElementById("result").innerText = `OUTPUT: 
+        //   Dose: ${dailydose_syrup} ml, Frequency: ${frequency},
+           // Max Dose: ${max_dose}, Additional Note: ${additional_Note}
+          //  `;
             };
             console.log(localStorage.getItem("drug"));
             console.log("ALL STORAGE:", localStorage);
             console.log("drug:", localStorage.getItem("drug"));
             console.log("daily dose:", localStorage.getItem("daily_dose"));
+            console.log("dailydose_syrup:", `${localStorage.getItem("syrupdose")} ml`);
+            console.log("selectedsyrupstrength:", localStorage.getItem("selectedsyrupstrength"));
+             console.log("syrup_strength:", localStorage.getItem("syrup_strength"));
+             console.log("mg:", localStorage.getItem("mg"));
+             console.log("ml:", localStorage.getItem("ml"));
 
             </script>
     </body>
