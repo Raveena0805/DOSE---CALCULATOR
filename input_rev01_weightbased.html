@@ -1,960 +1,1339 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <title>DOSE_CALCULATOR_INPUT</title>
-    <style>
- body {
-    background: linear-gradient(
-            180deg,
-            rgba(255, 181, 192, 1) 30%,
-        rgba(251, 165, 251, 1) 60%,
-        rgba(201, 151, 237, 1) 80%,
-        rgba(29, 68, 82, 1) 100%
-        );
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOSE CALCULATOR</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg,
+        rgba(255,181,192,1) 30%,
+        rgba(251,165,251,1) 60%,
+        rgba(201,151,237,1) 80%,
+        rgba(29,68,82,1) 100%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex;
     justify-content: center;
-    align-items: center;
-    justify-content: center;
-    max-width: 360px;
-    max-height: 720px;  
+    padding: 24px 10px;
 }
-.Entire-Page {
-    width: 100%;
-    height: 100%;
-    margin-left: 10px;
+.app { width: 100%; max-width: 360px; }
+.title {
+    width: 100%; min-height: 64px; margin-bottom: 18px;
+    border: 2px solid #000; border-radius: 8px;
+    background: #9263B5; color: #000;
+    font-size: 24px; font-weight: 800;
 }
-.Button-dose-calculator {
-        background-color: rgba(146, 99, 181, 1);
-        color: black;
-        height: 70px;
-        width: 270px;
-        padding: 8px;
-        font-weight: bolder;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 24px;
-        border-width: 2px;
-        border-color: black;
-        border-radius: 5px;
-        border-style: solid;
-        display: flex;
-        align-items:center;
-        justify-content:center;
-        margin-bottom: 50px;  
-        margin-top: 50px;
-        margin-left: 25px;
-        margin-right: 25px;
-        inline-size: 250px;
-        cursor: pointer;
-      }
+.mode {
+    width: 100%; min-height: 52px; margin-bottom: 18px;
+    border: 3px solid rgba(11,65,92,.8); border-radius: 6px;
+    background: #8AADBC; font-size: 20px; font-weight: 700;
+}
+.card {
+    width: 100%; padding: 18px 16px;
+    background: #F3FBFF; border: 1px solid #000;
+    border-radius: 20px; box-shadow: 4px 5px 6px 2px #6A767B;
+}
+.field { margin-bottom: 16px; }
+.field:last-child { margin-bottom: 0; }
+label { display:block; font-weight:700; margin-bottom:6px; }
+input, select {
+    width:100%; height:38px; padding:6px 9px;
+    border:1px solid #555; border-radius:5px;
+    background:#fff; font-size:15px;
+}
+input:focus, select:focus { outline:2px solid rgba(95,168,218,.5); }
+.age-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.hidden { display:none !important; }
+.option-group { display:flex; flex-direction:column; gap:7px; }
+.option {
+    display:flex; align-items:center; gap:8px;
+    padding:8px 9px; border:1px solid #b7c3ca;
+    border-radius:5px; background:#fff; cursor:pointer;
+}
+.option input { width:auto; height:auto; margin:0; }
+.calculate-wrap { display:flex; justify-content:center; margin:20px 0; }
+#calculate {
+    width:110px; height:40px; border:1px solid #124d70;
+    border-radius:6px; font-weight:700; cursor:pointer;
+    background:linear-gradient(180deg,#5FA8DA 0%,#4E97C9 45%,#146CA8 100%);
+}
+.message {
+    padding:10px 12px; border-radius:7px; margin-top:10px;
+    background:rgba(255,255,255,.9); border:1px solid #888;
+}
+.error { color:#8a1f1f; border-color:#a33; }
+</style>
+</head>
+<body>
+<main class="app">
+    <button class="title" type="button">DOSE-CALCULATOR</button>
+    <button class="mode" type="button">Weight Based Calculation</button>
 
- .Button-weight-based-calc {
-    background-color: #8AADBC;
-    color: black;
-    height: 54px;
-    width: 300px;
-    padding: 6px;
-    font-family: source serif pro;
-    font-size: 22px;
-    font-weight: bold;
-    border-radius: 3px;
-    border-color: rgba(11, 65, 92, 0.8);
-    border-width: 3px;
-    border-style: solid;
-    display: block;
-    margin-bottom: 50px;  
-    margin-top: 50px;
-    cursor: pointer;
-    align-items: center;   
- }
- .Input-card {
-    display: grid;
-     grid-template-columns: repeat(1, 1fr );
-     grid-template-rows: repeat(4,1fr);
-     grid-auto-flow: column;
-    background-color: #F3FBFF;
-    width: 324px;
-    height: 295px;
-    border-radius: 23px;
-    border-color: black;
-    border-width: 1px;
-    box-shadow: 4px 5px 6px 2px rgba(106, 118, 123, 1);
- }
- .DRUG {
-    display: inline-block;
-        margin-top: 10px;
-        margin-left: 10px;
-        margin-bottom: 0px;
- }
- .drugiconlabel{
-    display: inline-block;
-    
- }
- .Drug-icon{
-    width: 14px;
-    height: 22px;
-    background-repeat: no-repeat;
-    display: block;
-    margin-bottom: 5px;
- }
- .DRUG-button{
-    vertical-align: top;
-    margin-right: 50px;
- }
-.custom-dropdown{
-    display: inline-block;
-    margin-bottom: 5px; 
-   margin-left: 10px;
-    width: 150px;
-    height: 30px;
-    border-radius: 2px;
-    align-self: self-start;
-}
-.Input-Box {
-    height: 21px;
-
-}
-.dropdown-list {
-    overflow-y:auto;
-    max-height: 200px;
-    opacity: 0;
-}
-
-.custom-dropdown:active .dropdown-list{
-    opacity: 1;
-}
-
- .DOSAGE_FORM {
-    display: inline-block;
-        margin-top: 10px;
-        margin-left: 10px;
- }
- .Dosage_form_Icon {
-    width: 20px;
-    height: 22px;
-    background-repeat: no-repeat;
-    display: block;
-    margin-bottom: 5px;
- }
- .Dosage_Form_button{
-    display: inline-block;
-    vertical-align: top;
-    
- }
- .Input-Box-DF {
-    display: inline-block;
-    margin-bottom: 5px; 
-   margin-left: 10px;
-    width: 150px;
-    height: 21px;
-    border-radius: 2px;
-    align-self: self-start;
- }
-.custom-dropdown{
-    display: inline-block;
-}
-.dropdown-list {
-    overflow-y:auto;
-    max-height: 200px;
-}
-
- .Weight {
-    display: inline-block;
-        margin-top: 10px;
-        margin-left: 10px;
- }
- .Weighticonlabel{
-    display: inline-block;
- }
- .Weight_Icon {
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    display: block;
-    margin-bottom: 5px;
- }
- .Weight_button{
-    display: inline-block;
-    vertical-align: top;
- }
-.Input_Value{
-    display: inline-block;
-    margin-left: 50px;
-    width: 150px;
-    height: 21px;
-}
-.Input-Box_W {
-    display: inline-block;
-    margin-bottom: 5px; 
-   margin-left: 10px;
-    width: 150px;
-    height: 21px;
-    border-radius: 2px;
-    align-self: self-start;
-}
-.ageiconlabel {
-    display: inline-block;
-}
-.Age {
-    display: inline-block;
-        margin-top: 10px;
-        margin-left: 10px;
- }
-.Age_Icon {
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    display: block;
-    margin-bottom: 5px;
- }
-.Age_button{
-    display: inline-block;
-    vertical-align: top;
- }
- .Age_Input_Value {
-    display: inline-grid;
-    grid-template-columns: repeat(2, 0fr);
-    margin-left: 72px;
-    column-gap: 0px;
-    row-gap: 0px;
-    width: 283px;
-    align-self:self-start;
-    position: absolute;
-    inline-size: 250px;
-    margin-top: 10px;
- }
-.Year_Input_Box{
-    display: inline-block;
-    margin-left: 10px;
-    width: 65px;
-    height: 21px;
-     border-radius: 2px;
-     
-}
-.Month_Input_Box {
-    display: inline-block;
-    margin-left: 10px;
-    width: 65px;
-    height: 21px;
-     border-radius: 2px;
-     
-}
-
-.syrupstrength {
-    display: inline-block;
-    margin-left: 10px;
-    width: 150px;
-    height: 21px;
-    border-radius: 2px;
-    align-self: self-start;
-    color: black;
-    font-size: 15px;
-}
-
-.Calculate{
-    width: 76px;
-    height: 25px;
-}
-
-.calculation {
-    width: 76px;
-    height: 35px;
-    color: black;
-    background: linear-gradient(180deg, 
-   rgba(95, 168, 218, 1) 0%,
-   rgba(78, 151, 201, 1) 45%,
-   rgba(20, 108, 168, 1) 100%);
-    border-radius: 5px;
-    margin-top: 20px;
-    align-items: center;
-margin-left: 100px;}
-
-    </style>   
-       
-    </head>
-    <body>
-        <div class="Entire-Page">
-        
-        <button id = "title" class="Button-dose-calculator"> DOSE-CALCULATOR </button>
-        <button class="Button-weight-based-calc">
-        Weight Based Calculation
-        </button>
-
-        <div class="Input-card">
-            <div class="DRUG">
-                <div class="drugiconlabel">
-                <img class="Drug-icon" src="Images_and_inputs/Drug_icon.png">
-                <label class="DRUG-button" for="drugInput">
-                DRUG:
-                </label>
-                </div>
-               
-                <div class="custom-dropdown">
-                    <input id="drugInput" class="Input-Box" type="text" placeholder="Select Drug" list="drugList" onchange="updatestrengthoption()">
-                    <div class="dropdown-list">
-                        <datalist id="drugList">
-                            <option value="Ambroxol">
-                            <option value="Amoxicillin">
-                            <option value="Azithromycin">
-                            <option value="Cefixime">
-                            <option value="Cefotaxime">
-                            <option value="Clarithromycin">
-                            <option value="Ceftriaxone">
-                            <option value="Domperidone">
-                            <option value="Furosemide">
-                            <option value="Gentamycin">
-                            <option value="Ibuprofen">
-                            <option value="Levocetirizine">
-                            <option value="Levetiracetam">
-                            <option value="Mefenamic acid">
-                            <option value="Ondensetron">
-                            <option value="Paracetamol">
-                            <option value="Phenobarbital">
-                            <option value="Phenytoin">
-                            <option value="Salbutamol(Inhaled)">
-                            <option value="Valproate">
-                            <option value="Vancomycin">
-                            <option value="Zinc">
-                        </datalist>
-                    </div>
-                </div>
-            </div>
-
-            <div class="DOSAGE_FORM">
-                <img class="Dosage_form_Icon" src="Images_and_inputs/medicine.png">
-                <label class="Dosage_Form_button" for="dosageformInput">
-                    Dosage Form:
-                </label>
-                <div class="custom-dropdown">
-                    <input id="dosageformInput" class="Input-Box-DF" type="text" placeholder="Dosage Form" list="dosageformList">
-                    <div class="dropdown-list">
-                        <datalist id="dosageformList">
-                        <option value="Tablet">
-                        <option value="Capsule">
-                        <option value="Suspension">
-                        <option value="Powd. for Suspension">
-                        <option value="Syrup">
-                        <option value="Drops">
-                        <option value="Injection">
-                        </datalist>
-                        
-                    </div>       
-                </div>
-                <div id="strengthoptiondiv" class="syrupstrength" onclick="selectedsyrupstrength">  
-                </div>
-            </div>
-        
-            
-
-             <div class="Weight">
-                <div class="Weighticonlabel">
-                <img class="Weight_Icon" src="Images_and_inputs/weight.png">
-                <label class="Weight_button">
-                    Weight:
-                </label>
-                </div>
-                
-                <div class="Input_Value">
-                    <input class="Input-Box_W" type="number" placeholder=" Kg" id="weightvalue">     
-                </div>
-            </div>
-
-             <div class="Age">
-                <div class="ageiconlabel">
-                <img class="Age_Icon" src="Images_and_inputs/age.png">
-                <label class="Age_button">Age:
-                </label>
-                </div>
-                
-                <div class="Age_Input_Value">
-                    <input class="Year_Input_Box" type="number" placeholder=" |Years">
-                    <input class="Month_Input_Box" type="number" placeholder=" |Months">
-                </div>
-            </div>
-
+    <section class="card">
+        <div class="field">
+            <label for="drug">Drug</label>
+            <input id="drug" type="text" list="drugList" placeholder="Select Drug" autocomplete="off">
+            <datalist id="drugList"></datalist>
         </div>
 
-            <div class="Calculate">
-                <button type="button" onclick="calculateDose()" id="Calculation" class="calculation">Calculate</button>
+        <div id="indicationField" class="field hidden">
+            <label>Indication</label>
+            <div id="indicationOptions" class="option-group"></div>
+        </div>
+
+        <div id="ageRuleField" class="field hidden">
+            <label>Age-specific dose</label>
+            <div id="ageRuleOptions" class="option-group"></div>
+        </div>
+
+        <div class="field">
+            <label for="dosageForm">Dosage Form</label>
+            <select id="dosageForm">
+                <option value="">Select Dosage Form</option>
+            </select>
+        </div>
+
+        <div id="strengthField" class="field hidden">
+            <label>Strength</label>
+            <div id="strengthOptions" class="option-group"></div>
+        </div>
+
+        <div class="field">
+            <label for="weight">Weight (kg)</label>
+            <input id="weight" type="number" min="0" step="0.01" placeholder="Enter weight">
+        </div>
+
+        <div class="field">
+            <label>Age</label>
+            <div class="age-row">
+                <input id="years" type="number" min="0" step="1" placeholder="Years">
+                <input id="months" type="number" min="0" max="11" step="1" placeholder="Months">
             </div>
-            <div id = "result">
-            </div>
-         
+        </div>
+    </section>
 
+    <div class="calculate-wrap">
+        <button id="calculate" type="button">Calculate</button>
+    </div>
+    <div id="message"></div>
+</main>
 
-            <script>
-                const standarddose  = [
-                    {drug: "Ambroxol",
-                    dose: 10,
-                    frequency: "BID",
-                    formulation: ["NA"],
-                    max_dose : "Maximum dose is 30 mg/day.",
-                    additional_Note: "N/A"},
+<script>
+/*
+  DATA:
+  Keep drug-specific variations here. Do not force every drug to have
+  the same structure.
+*/
+const standarddose = [
+    {
+        drug: "Albendazole",
+        indication: "Anthelmintic",
+        age: [
+            { range: "1 - 2 years", dose: 200, frequency: "q24", doseType: "fixed" },
+            { range: "3 - 12 years", dose: 400, frequency: "q24", doseType: "fixed" },
+        ],
+        formulation: [
+            { type: "Tablet", mg: 200},
+            { type: "Tablet", mg: 400},
+            { type: "Syrup", mg: 200, ml: 5 },       
+        ],
+        max_dose: "Maximum dose is 800 mg/day.",
+        additional_Note: "Repeat dose after 2 weeks for Pinworm and roundworms.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+      {
+        drug: "Acetyl salicylic acid",
+        indication: [
+            { name: "Anti - inflammatory, antipyretic, analgesic", dose: 80, frequency: "OD or BD" },
+            { name: "Antiplatelet", dose: 3, frequency: "OD" },
+            {name:"Kawasaki disease", dose: 80, frequency: "q4" },
+            {name: "Juvenile idiopathic arthritis", dose: 60, frequency: "q4" },
+            {name: "Rheumatic fever", dose: 60, frequency: "q4" },
+        ],
+        age: "NA",
+        formulation: [
+            { type: "Tablet", mg: 75},
+            { type: "Tablet", mg: 100},
+            {type: "Tablet", mg: 150},
+            { type: "Tablet", mg: 300},
+            { type: "Tablet", mg: 325},
+            { type: "Tablet", mg: 500},     
+        ],
+        max_dose: "Maximum dose is 4 g/day.",
+        additional_Note: "Avoid in paediatric patients with viral illness due to risk of Reye's syndrome. Anti- inflammatory, antipyretic, analgesic: <12yr: 10 -15 mg/kg orally every 4 hours. >12 years: 325 - 650 mg orally/rectally every 4- 6 hours. Kawasaki disease: 80 - 100 mg/kg/day orally in 4 divided doses for 14 days or until the patient is afebrile for 48 - 72 hours. Then, 3 - 5 mg/kg/day orally as a single dose for 6 - 8 weeks.Rheumatic fever: 100 mg/kg/day orally in 4 divided doses then decrease dose to 60 to 70 mg/kg/day in divided dose for an additional 3 to 6 weeks. Antiplatelet: 3 - 5 mg/kg/day orally as a single dose, Maximum 75 mg.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.pediatriconcall.com/drugs/acetylsalicylic-acid/220", "https://www.drugs.com/dosage/aspirin.html#Usual_Pediatric_Dose_for_Pain"]
+        }
+    },
+    {
+        drug: "Cefaclor",
+        indication: "NA",
+        age: "NA",
+        dose: 20,
+        frequency: "q8",
+        formulation: [
+            { type: "Syrup", mg: 125, ml: 5 },
+            { type: "Syrup", mg: 250, ml: 5 }
+        ],
+        max_dose: "Maximum dose is 2 g/day.",
+        additional_Note: "Use higher dose for acute otitis media.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Cefadroxil",
+        indication: "In Cases of Hypersenstivity to cephalosporin",
+        age: "NA",
+        dose: 30,
+        frequency: "q12",
+        formulation: [
+            { type: "Tablet", mg: 250},
+            { type: "Tablet", mg: 500},
+            {type: "Syrup", mg: 125, ml: 5},
+            {type: "Syrup", mg: 250, ml: 5},
+            {type: "Syrup", mg: 500, ml: 5},
 
-                    {drug: "Amoxicillin",
-                    dose: 25, 
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 125,
-                        ml: 5},
-                        {type: "Syrup",
-                            mg: 250,
-                            ml: 5
-                        }],
-                    max_dose : "Maximum dose is 3 g/day.",
-                    additional_Note: "N/A"},
+        ],
+        max_dose: "Varies as per condition",
+        additional_Note: "NA",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Cefixime",
+        indication: "Upper Respiratory Tract Infections where other antibiotics are resistant. Lower Respiratory Tract Infection. UTI, e.g. cystitis",
+        age: "NA",
+        dose: 8,
+        frequency: "q12",
+        formulation: [
+            {type: "Syrup", mg: 50, ml: 5},
+            {type: "Syrup", mg: 100, ml: 5},
 
-                    {drug: "Azithromycin",
-                    dose: 10,
-                    frequency: "QD",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 100,
-                        ml: 5},
-                        {type: "Syrup",
-                            mg: 200,
-                            ml: 5
-                        }],
-                    max_dose : "Maximum dose is 500 mg/day.",
-                    additional_Note: "N/A"},
-
-                    {drug: "Cefixime",
-                    dose: 8,
-                    frequency: "Once a Day",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 50,
-                        ml: 5},
-                        {type: "Syrup",
-                            mg: 100,
-                            ml: 5
-                        }],
-                    max_dose : "Maximum dose is 400 mg/day.",
-                    additional_Note: "N/A"},
-
-                    {drug: "Cefotaxime",
-                    dose: 100,
-                    frequency: "Once a Day",
-                    formulation: ["NA"
-                        ],
-                    max_dose : "Maximum dose is 12 g/day.",
-                    additional_Note: "N/A"},
-
-                    {drug: "Cefpodoxime",
-                    dose: 10,
-                    frequency: "Once a Day",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 50,
-                        ml: 5},
-                        {type: "Syrup",
-                            mg: 100,
-                            ml: 5
-                        }],
-                    max_dose : "Maximum dose is 400 mg/day.",
-                    additional_Note: "Not to be given below 2 months of age."},
-
-                    {drug: "Clarithromycin",
-                    dose: 7.5,
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 125,
-                        ml: 5},
-                        {type: "Syrup",
-                            mg: 250,
-                            ml: 5
-                        }],
-                    max_dose : "Maximum dose is 1 g/day.",
-                    additional_Note: "N/A"},
-
-                    {drug: "Ceftriaxone",
-                    dose: 50,
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 250,
-                        ml: 5},
-                        ],
-                    max_dose : "Maximum dose is 4 g/day.",
-                    additional_Note: "Avoid in Neonates."},
-
-                    {drug: "Domperidone",
-                    dose: 0.2,
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 5,
-                        ml: 5},
-                    ],
-                    max_dose : "Maximum dose is 30 mg/day.",
-                    additional_Note: "Avoid long term use."},
-
-                    {drug: "Furosemide",
-                    dose: 1,
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 10,
-                        ml: 1},
-                       ],
-                    max_dose : "Maximum dose is 6 mg/kg/day.",
-                    additional_Note: "Monitor electrolytes."},
-
-                    {drug: "Gentamicin",
-                    dose: 5,
-                    frequency: "Thrice a day",
-                    formulation: ["NA"],
-                    max_dose : "Maximum dose is 5 mg/kg/day.",
-                    additional_Note: "Monitor renal function."},
-
-                    {drug: "Ibuprofen",
-                    dose: 10,
-                    frequency: "TID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 100,
-                        ml: 5},
-                        ],
-                    max_dose : "Maximum dose is 40 mg/kg/day.",
-                    additional_Note: "Monitor gastrointestinal function., Avoid in children less than 6 months."},
-                    
-                    {drug: "Levocetirizine",
-                    dose: 1,
-                    frequency: "Once a day",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 2.5,
-                        ml: 5},
-                        ],
-                    max_dose : "Maximum dose is 5 mg/day.",
-                    additional_Note: "N/A"},
-
-                    {drug: "Levetiracetam",
-                    dose: 20,
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 100,
-                        ml: 1},
-                       ],
-                    max_dose : "Maximum dose is 3000 mg/day.",
-                    additional_Note: "N/A"},
-
-                    {drug: "Mefenamic acid",
-                    dose: 25,
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 50,
-                        ml: 5},
-                        {type: "Syrup",
-                            mg: 100,
-                            ml: 5
-                        }],
-                    max_dose : "Maximum dose is 750 mg/day.",
-                    additional_Note: `Monitor gastrointestinal function.
-                        Avoid in children less than 6 months.
-                        Should be used for short term only(less than 7 days).`},
-
-                    {drug: "Ondensetron",
-                    dose: 0.15,
-                    frequency: "Once a day",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 2,
-                        ml: 5},
-                        ],
-                    max_dose : "Maximum dose is 1.5 mg/day.",
-                    additional_Note: "N/A"},
-
-                    {drug: "Paracetamol",
-                    dose: 10,
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 125,
-                        ml: 5},
-                        {type: "Syrup",
-                            mg: 250,
-                            ml: 5
-                        }],
-                    max_dose : "Maximum dose is 60 mg/kg/day.",
-                    additional_Note: "Monitor liver function.",
-                    },
-
-                    {drug: "Phenobarbital",
-                    dose: 3,
-                    frequency: "BID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 20,
-                        ml: 5},
-                    ],
-                    max_dose : "Maximum dose is 180 mg/day.",
-                    additional_Note: "N/A"},
-
-                    {drug: "Phenytoin",
-                    dose: 5,
-                    frequency: "TID", 
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 30,
-                        ml: 5},
-                        {type: "Syrup",
-                            mg: 125,
-                            ml: 5
-                        }],
-                    max_dose : "Maximum dose is 300 mg/day.",
-                    additional_Note: "N/A"}, 
-
-                    {drug: "Salbutamol(Inhaled)",
-                    dose: 100,
-                    frequency: "TID",
-                    formulation: ["NA"
-                        ],
-                    max_dose : "Maximum dose is 800 mcg/day.",
-                    additional_Note: "Nebulisation: 0.15 mg/kg/dose.(min 2.5 mg)"},
-
-                    {drug: "Valproate", 
-                    dose: 10, 
-                    frequency: "TID",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 200,
-                        ml: 5},
-                        ],
-                    max_dose : "Maximum dose is 60 mg/kg/day.",
-                    additional_Note: "Monitor liver function tests."},  
-
-                    {drug: "Vancomycin",
-                    dose: 10, 
-                    frequency: "TID",
-                    formulation: [
-                        {type: "Syrup"||"Suspension" || "Powd. for Suspension",
-                        mg: 250,
-                        ml: 5},
-                        ],
-                    max_dose : "Maximum dose is 2 g/day.",
-                    additional_Note: "Adjust dose in kidney function disorder."},
-
-                    {drug: "Zinc",
-                    dose: 20,
-                    frequency: "Once a day",
-                    formulation: [
-                        {type: "Syrup",
-                        mg: 20,
-                        ml: 5},
-                    ],
-                    max_dose : "N/A",
-                    additional_Note: "Use in acute diarrhoea for 10-14 days."}                                                 
-                ];
-                const dosageforms = [
-                    {dosageform: "Tablet"},
-                    {dosageform: "Capsule"},
-                    {dosageform: "Suspension"},
-                    {dosageform: "Powd. for Suspension"},
-                    {dosageform: "Syrup"},
-                    {dosageform: "Drops"},
-                    {dosageform: "Injection"},
-                ];
-
-                
-                let weight = Number(document.getElementById("weightvalue").value);
-
-              document.getElementById("drugInput").addEventListener("change", () => { 
-                updatestrengthoption();
-                let drug = document.getElementById("drugInput").value;
-                
-                let selecteddrug = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim());
-                let doses = selecteddrug.dose;
-                let frequency = selecteddrug.frequency;
-                let max_dose = selecteddrug.max_dose;
-                let additional_Note = selecteddrug.additional_Note;
-                let dailydose = weight*doses;
-                ;
-                let syrupstrength = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim()).formulation.filter(f => f.type === "Syrup"||f.type === "Suspension" || f.type === "Powd. for Suspension").map(f => ({mg: f.mg, ml: f.ml}));
-                //standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim()).formulation.filter(f => f.type === "Syrup").map(f => ({mg: f.mg, ml: f.ml}));
-
-              //  selecteddrug.formulation.forEach((formulation,index) => {
-              // console.log(`${formulation.mg}/${formulation.ml}`);
-                //});
-
-                //console.log(selecteddrug);
-               // console.log(dose);
-            });
-                //document.getElementById("drugInput").addEventListener("change", (updatestrengthoption) => { 
-               
-                //dosageform = document.getElementById("dosageformInput").value;selecteddosageform = dosageforms.find(d => d.dosageform.toLowerCase().trim() === dosageform.toLowerCase().trim());;
-
-
-document.getElementById("dosageformInput").addEventListener("change", () => {
-updatestrengthoption();
-    let dosageform =
-        document.getElementById("dosageformInput").value;
-console.log(dosageform);
-    let selecteddosageform = dosageforms.find(d => {
-        return d.dosageform.toLowerCase().trim() === dosageform.toLowerCase().trim();
-});
-});
-
-
-function updatestrengthoption() {
-    
-    let drug = document.getElementById("drugInput").value;
-                
-    let selecteddrug = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim());
-    let doses = selecteddrug.dose;
-    let frequency = selecteddrug.frequency;
-    let max_dose = selecteddrug.max_dose;
-    let additional_Note = selecteddrug.additional_Note;
-    let dailydose = weight*doses;
-    let syrupstrength = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim()).formulation.filter(f => f.type === "Syrup"||f.type === "Suspension" || f.type === "Powd. for Suspension").map(f => ({mg: f.mg, ml: f.ml}));
-
-    dosageform = document.getElementById("dosageformInput").value;
-    console.log(dosageform);
-
-    selecteddosageform = dosageforms.find(d =>  d.dosageform.toLowerCase().trim() === dosageform.toLowerCase().trim());
-
-console.log(selecteddosageform);
-
-if (selecteddrug.drug && (selecteddosageform.dosageform === "Syrup" || selecteddosageform.dosageform === "Suspension" || selecteddosageform.dosageform === "Powd. for Suspension")) {
-//console.log(syrupstrength);
-    drug = document.getElementById("drugInput").value;
-    selecteddrug = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim());
-    doses = selecteddrug.dose;
-    frequency = selecteddrug.frequency;
-    max_dose = selecteddrug.max_dose;
-    additional_Note = selecteddrug.additional_Note;
-    dailydose = weight*doses;
-    syrupstrength = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim()).formulation.filter(f => f.type === "Syrup"||f.type === "Suspension" || f.type === "Powd. for Suspension").map(f => ({mg: f.mg, ml: f.ml}));
-
-    dosageform = document.getElementById("dosageformInput").value;
-
-    selecteddosageform = dosageforms.find(d =>  d.dosageform.toLowerCase().trim() === dosageform.toLowerCase().trim());
-   //let syrupstrength = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim()).formulation.filter(f => f.type === "Syrup").map(f => ({mg: f.mg, ml: f.ml}));
- console.log(syrupstrength);
-    document.getElementById("strengthoptiondiv").innerHTML =
-    syrupstrength.map(f =>
-
-`<label>
-
-<input
- type="radio"
- name="strength"
- value="${f.mg}/${f.ml}"
->
-
- ${f.mg} mg / ${f.ml} ml
-
-</label>
-
-`
-
-).join("");
-}}
-
-let selectedsyrupstrength = "";
-let mg = "";
-let ml = "";
-let dailydose_syrup = ""; 
-document.getElementById("strengthoptiondiv").addEventListener("change", () => {
-    selectedsyrupstrength = document.querySelector('input[name="strength"]:checked')?.value;
-console.log(document.querySelectorAll('input[name="strength"]'));
-   // console.log(selectedsyrupstrength);
-    mg = selectedsyrupstrength ? selectedsyrupstrength.split('/')[0] : null;
-    ml = selectedsyrupstrength ? selectedsyrupstrength.split('/')[1] : null;
-    dailydose_syrup =  [Number(ml)/Number(mg)] *dailydose; 
-
-});
-
-
-function calculateDose() {
-
-    
-               // console.log("Calculate button clicked");
-
-              //  document.getElementById("drugInput").addEventListener("change", () => { 
-               drug = document.getElementById("drugInput").value;
-               //console.log(drug);
-               dosageform = document.getElementById("dosageformInput").value;
-              //console.log(dosageform);
-                
-                selecteddrug = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim());
-                //console.log(selecteddrug);
-                doses = selecteddrug.dose;
-                dosageform = document.getElementById("dosageformInput").value;
-               // console.log(dosageform);
-                selecteddosageform = dosageforms.find(d =>  d.dosageform.toLowerCase().trim() === dosageform.toLowerCase().trim());
-          //  console.log(selecteddosageform);
-                weight = Number(document.getElementById("weightvalue").value);
-                frequency = selecteddrug.frequency
-                max_dose = selecteddrug.max_dose;
-                additional_Note = selecteddrug.additional_Note;
-                formulation = selecteddrug.formulation;
-                syrupstrength = selecteddrug.formulation.filter(f => f.type === "Syrup"||f.type === "Suspension" || f.type === "Powd. for Suspension").map(f => ({mg: f.mg, ml: f.ml}));
-              console.log(syrupstrength[0].mg);
-               selectedsyrupstrength = document.querySelector('input[name="strength"]:checked')?.value;
-               console.log(selectedsyrupstrength);
-               mg = Number(selectedsyrupstrength ? selectedsyrupstrength.split('/')[0] : null);
-              console.log(mg);
-               ml = Number(selectedsyrupstrength ? selectedsyrupstrength.split('/')[1] : null);
-              // console.log(`Selected syrup strength: ${mg} mg/${ml} ml`);
-              // console.log(typeof selectedsyrupstrength);
-              //  console.log(selectedsyrupstrength);
-
-                dailydose = weight*doses;
-                dailydose_syrup =  [Number(ml)/Number(mg)] *dailydose; 
-
-                if (selecteddrug && weight >0 && selecteddosageform && (selecteddosageform.dosageform === "Tablet"|| selecteddosageform.dosageform === "Capsule")) {
-                dailydose = weight*doses;
-                console.log(`Dose: ${dailydose} mg, Frequency: ${frequency},
-                 Max Dose: ${max_dose}, Additional Note: ${additional_Note}
-                `);
-              } else if  (selecteddrug && weight >0 && selecteddosageform && (selecteddosageform.dosageform === "Syrup"||selecteddosageform.dosageform === "Suspension"|| selecteddosageform.dosageform === "Powd. for Suspension") && selectedsyrupstrength) {
-
-                dailydose = weight*doses;
-
-                dailydose_syrup =  [Number(ml)/Number(mg)] *dailydose; 
-
-                console.log(`Dose: ${dailydose_syrup} ml, Frequency: ${frequency},
-                 Max Dose: ${max_dose}, Additional Note: ${additional_Note}
-                `);
-
-              } else if 
-              (!selecteddrug) {
-                console.log("Please select a drug.")
-              }
-               else {
-                console.log("Please select a drug and enter a valid weight.");
-               }
-               
+        ],
+        max_dose: "Max 400 mg/day",
+        additional_Note: "For enteric fever, 20 mg/kg/day q12 or q24.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        },
+    },
+     {
+        drug: "Cefpodoxime Proxetil",
+        indication: "Covers both gram - negative and gram - positive bacteria including S.typhi.",
+        age: "NA",
+        dose: 10,
+        frequency: "q12",
+        formulation: [
+            {type: "Tablet", mg: 50},
+            {type: "Tablet", mg: 100},
+            {type: "Tablet", mg: 200},
+            {type: "Syrup", mg: 50, ml: 5},
+            {type: "Syrup", mg: 100, ml: 5},
+            {type: "Suspension", mg: 50, ml: 5},
+            {type: "Suspension", mg: 100, ml: 5},
+        ],
+        max_dose: "Max 400 mg/day",
+        additional_Note: "Should be administered with food",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Ceftriaxone Sodium",
+        indication: [
+            { name: "General infections", dose: 50, frequency: "q12-q24" },
+            { name: "Meningitis", dose: 100, frequency: "q12" }
+        ],
+        age: "NA",
+        formulation: "NA",
+        max_dose: "Maximum dose is 4 g/day.",
+        additional_Note: "Avoid in neonates with jaundice.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Cefuroxime axetil",
+        indication: "Bacterial siunsitis, otits media, Chronic Obstructive Pulmonary disease, Uncomplicated skin and soft tissue infections.",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 250},
+            {type: "Tablet", mg: 500},
+            {type: "Syrup", mg: 125, ml: 5},
+            {type: "Syrup", mg: 250, ml: 5},
+        ],
+        dose: 20,
+        frequency: "q12",
+        max_dose: "Maximum dose is 1g/day. However, dose depends on the severity and nature of infection",
+        additional_Note: 
+        `100 - 150 mg/kg/day q6 - q8 hr IV and IM.
+       For enteric fever, 40 mg/kg/day q12 oral.
+        Give with or after food.`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.drugs.com/dosage/cefuroxime.html#Usual_Pediatric_Dose_for_Bacterial_Infection"]
+        }
+    },
+    {
+        drug: "Chlorpheniramine Maleate",
+        indication: "Antihistamine, used to treat symptoms of seasonal allergies, hay fever, common cold, itchy skin reactions",
+        age: [
+            { range: "1 - 6 years", dose: 1, frequency: "q4-q6" },
+            { range: "6 - 12 years", dose: 2, frequency: "q4-q6" },
+            { range: ">12 years", dose: 4, frequency: "q4-q6" }
+        ],
+        formulation: [
+            { type: "Tablet", mg: 4, ml: 0 },
+            {type: "Tablet", mg: 5, ml: 0},
+            {type: "Tablet", mg: 10, ml: 0},
+            { type: "Syrup", mg: 2, ml: 5 },
+            {type: "Syrup", mg: 4, ml: 5} ,       
+        ],
+        frequency: "q4-q6",
+        max_dose: "Maximum dose is 24 mg/day.",
+        additional_Note: "May cause drowsiness.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+     {
+        drug: "Cimetidine",
+        indication: "Antacid",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 200},
+            {type: "Tablet", mg: 400},
+        ],
+        dose: 20,
+        frequency: "q12",
+        max_dose: "NA",
+        additional_Note: 
+        `Use is not recommended unless the anticipated benefits outweigh the potential risk. Double dose in patients with GERD. Parenteral dose is 5 - 10 mg/kg every 6 - 8 hr IM/IV`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+     {
+        drug: "Ciprofloxacin",
+        indication: "Antibiotic",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 250},
+            {type: "Tablet", mg: 500},
+        ],
+        dose: 20,
+        frequency: "q12",
+        max_dose: "Max daily dose is 500 mg/day (PO) and 1.2 g/day (IV).",
+        additional_Note: 
+        `10 - 20 mg/kg/day q12 hr.
+        20 mg/kg single dose for contacts of N.meningitidis.
+        Should be reserved for children where cultured pathogens are resistant to all other antibiotics.`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.pediatriconcall.com/drugs/ciprofloxacin/421"]
+        }
+    },
+     {
+        drug: "Ciproheptadine Hydrochloride",
+        indication: "Appetite Stimulant",
+        age: [
+            { range: "2 - 6 years", dose: 2, frequency: "q8-q12" },
+            { range: "7 - 14 years", dose: 4, frequency: "q8-q12" },
+        ],
             
-          //  document.getElementById("result").innerText = `OUTPUT: 
-          //  Dose: ${dailydose} mg, Frequency: ${frequency},
-          //   Max Dose: ${max_dose}, Additional Note: ${additional_Note}
-          //  `;
+        formulation: [
+            {type: "Tablet", mg: 4},
+            {type: "Syrup", mg: 2, ml: 5},
+        ],
+        frequency: "q8-q12",
+        max_dose: [
+            { range: "2 - 6 years", max_dose: "12mg daily"},
+            { range: "7 - 14 years", max_dose: "16 mg daily"},
+        ],
+        additional_Note: 
+        ` Avoid use in infants under 2 years old.`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.empr.com/drug/cyproheptadine/"]
+        }
+    },
+    {
+        drug: "Cetrizine",
+        indication: "NA",
+        age: [
+            { range: "6 months - 2 years", dose: 2.5, frequency: "OD", doseType: "fixed" },
+            { range: "2 - 6 years", dose: 5, frequency: "OD", doseType: "fixed" },
+            { range: "6 - 12 years", dose: 10, frequency: "OD", doseType: "fixed" }
+        ],
+        formulation: [
+            { type: "Syrup", mg: 100, ml: 5 },
+            { type: "Syrup", mg: 200, ml: 5 }
+        ],
+        max_dose: "Maximum dose is 500 mg/day.",
+        additional_Note: "N/A",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+     {
+        drug: "Codeine Phosphate",
+        indication: [
+            { name: "Pain relief", dose: 0.5, frequency: "q4 - q6" },
+            { name: "Antitussive", dose: 0.2, frequency: "q4 - q6" }
+        ],
+        age: "NA",
+        formulation: "NA",
+        max_dose: "Maximum dose is 240 mg/day.",
+        additional_Note: "Should not be used in children aged less than 12.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Domperidone",
+        indication: "Acute nausea and vomiting due to any cause.",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 10},
+            {type: "SYrup", mg: 1, ml: 1},
+        ],
+        dose: 0.2,
+        frequency: "q4- q8",
+        max_dose: "Max daily dose is 30 mg/day",
+        additional_Note: 
+        `Avoid long-term (QT prolongation risk).`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+     {
+        drug: "Desloratadine",
+        indication: "Anti histamine",
+        age: [
+            {range: "6 months - 11 months", dose: 1, frequency: "OD", doseType: "fixed" },
+            { range: "1 year - 5 years", dose: 1.25, frequency: "OD", doseType: "fixed" },
+            { range: "6 - 11 years", dose: 2.5, frequency: "OD", doseType: "fixed" },
+            { range: "> 12 years", dose: 5, frequency: "OD", doseType: "fixed" }
+        ],
+        formulation: [
+            {type: "Tablet", mg: 5},
+            { type: "Syrup", mg: 0.5, ml: 1 },
+            { type: "Syrup", mg: 2.5, ml: 5 }
+        ],
+        max_dose: "Maximum dose is 5 mg/day.",
+        additional_Note: "Avoid in neonates and infants below 6 months of age.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.pediatriconcall.com/drugs/desloratadine/473"]
+        }
+    },
+     {
+        drug: "Esomeprazole",
+        indication: "Antacid, it is also used with certain antibiotics to treat stomach ulcers caused by H.pylori. Erosive Oesophagitis",
+        age: [
+            { range: "1 month - 11 months", dose: 2.5, frequency: "OD" },
+            { range: "1 - 11 years", dose: 10, frequency: "OD" },
+            { range: "12 - 17 years", dose: 20, frequency: "OD or BD" },
+        ],
+        formulation: [
+            {type: "Tablet", mg: 10},
+            {type: "Tablet", mg: 20},
+            {type: "Tablet", mg: 40},
+        ],
+        frequency: "q12 - q24",
+        max_dose: "NA",
+        additional_Note: "Avoid in infants younger than 1 month. For GERD induced erosive oesophagitis:{age range: 1 month - 11 months,weight range: 3 - 5kg, dose: 2.5 mg, frequency: OD }, {age range: 1 month - 11 months, weight range: 5 kg - 7.5 kg, dose: 5 mg, frequency: OD},{age range: 1 month - 11 months, weight range: 7.5 kg - 12 kg, dose: 10 mg, frequency: OD}",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.mayoclinic.org/drugs-supplements/esomeprazole-oral-route/description/drg-20074322", "https://www.pediatriconcall.com/drugs/esomeprazole/550"]
+        }
+    },
+    {
+        drug: "Famotidine",
+        indication: "Antacid.",
+        age: [
+            { range: "1 month - 2 months", dose: 0.5, frequency: "OD" },
+            { range: "3 - 12 months", dose: 1, frequency: "BD" },
+            { range: "1 year - 16 years", dose: 1, frequency: "BD" },
+        ],
+        formulation: [
+            {type: "Tablet", mg: 200},
+            {type: "Tablet", mg: 40},
+            {type: "Injection", mg: 10, ml: 1}
 
-            console.log("function triggered");
-            console.log(selecteddrug);
-            localStorage.setItem("selecteddrug", JSON.stringify(selecteddrug.drug));
-            localStorage.setItem("drug", drug);
-            localStorage.setItem("dose", selecteddrug.dose);
-            localStorage.setItem("weight", weight);
-            localStorage.setItem("daily_dose", dailydose);
-            localStorage.setItem("frequency", frequency);
-            localStorage.setItem("max_dose", max_dose);
-            localStorage.setItem("additional_Note", additional_Note);
-            localStorage.setItem("selecteddosageform", JSON.stringify(selecteddosageform.dosageform));
-           localStorage.setItem("dosageform", dosageform);
-           // localStorage.setItem("selectedsyrupstrength", JSON.stringify(selectedsyrupstrength));
-            localStorage.setItem("syrup_strength", JSON.stringify(syrupstrength));
-            localStorage.setItem("selectedsyrupstrength", selectedsyrupstrength);
-            localStorage.setItem("mg", mg);
-            localStorage.setItem("ml", ml); 
-            localStorage.setItem("syrupdose", dailydose_syrup);
-            window.location.href = "output.html"; 
+        ],
+        dose: 1,
+        frequency: "q8 - q12",
+        max_dose: "Max daily dose is 40 mg/day",
+        additional_Note: 
+        `For Peptic Ulcer disease: Dose is 0.5 mg/kg/day OD at bed time or 0.25 mg/kg/IV every 12 hours.`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+     {
+        drug: "Fexofenadine Hydrochloride",
+        indication: "Anti histamine, seasonal allergic rhinitis, chronic idiopathic urticaria, hay fever, itchy skin reactions",
+        age: [
+            {range: "6 months - 2 years", dose: 15, frequency: "BD", doseType: "fixed" },
+            { range: "2 year - 12 years", dose: 30, frequency: "BD", doseType: "fixed" },
+            { range: "> 12 years", dose: 60, frequency: "BD", doseType: "fixed" }
+        ],
+        formulation: [
+            {type: "Tablet", mg: 120},
+            {type: "Tablet", mg: 180},
+            { type: "Syrup", mg: 30, ml: 5 }
+        ],
+        max_dose: "Maximum dose is 180 mg/day.",
+        additional_Note: "Avoid in neonates and infants below 6 months of age.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Hydroxyzine Hydrochloride",
+        indication: "Anti- histaminic and analgesic activity. Bronchodilator. Pre - operative sedation",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 10},
+            {type: "Tablet", mg: 25},
+            {type: "Tablet", mg: 50},
+            {type: "Syrup", mg: 10, ml: 5},
+            {type: "Drop", mg: 6, ml: 1}
+        ],
+        dose: 0.6,
+        frequency: "q6",
+        max_dose: "NA",
+        additional_Note: 
+        `For Anxiety:
+        Under 6 years: 50 mg OD given in four divided dose
+        Above 6 years: 50 to 100 mg OD given in four divided dose.
+        Not recommended in infants below 6 months.
+        May cause drowsiness, dry mouth, weakness, headache, dizziness, confusion.`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.drugs.com/dosage/hydroxyzine.html"]
+        }
+    },
+    {
+        drug: "Ibuprofen",
+        indication: [
+            { name: "Pain relief", dose: 5, frequency: "q6 - q8" },
+            { name: "Analgesic", dose: 5, frequency: "q6 - q8" }
+        ],
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 200},
+            {type: "Tablet", mg: 400},
+            {type: "Syrup", mg: 100, ml: 5},
+        ],
+        max_dose: "Maximum dose is 2.4 g/day.",
+        additional_Note: "Should not be used in children aged less than 6 months.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Itraconazole",
+        indication: "Antifungal",
+        age: "NA",
+        formulation: [
+            {type: "Capsule", mg: 50},
+            {type: "Capsule", mg: 100},
+            {type: "Capsule", mg: 200},
+        ],
+        dose: 5,
+        frequency: "q12",
+        max_dose: "200 mg per day",
+        additional_Note: 
+        `Do not use in patients with ventricular dysfunction and cognitive heart failure.`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+     {
+        drug: "Ivermectin",
+        indication: "Anthelmintic. It is generally used to treat intestinal infections from threadworms and other kinds of worm infections.",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 3},
+            {type: "Tablet", mg: 6},
+            {type: "Tablet", mg: 12},
+            {type: "Suspension", mg: 1.5, ml: 5}
+        ],
+        dose: 0.2,
+        frequency: "q24",
+        max_dose: "200 mcg/kg per day",
+        additional_Note: 
+        `The dose may be repeated after 2 weeks.
+        Avoid below 15 kg (< 5year)`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.mayoclinic.org/drugs-supplements/ivermectin-oral-route/description/drg-20064397"]
+        }
+    },
+     {
+        drug: "Levofloxacin",
+        indication: "Antibiotic, generally used in multidrug resistant tuberculosis, Community acquired pneumonia, plague, inhalation anthrax",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 250},
+            {type: "Tablet", mg: 500},
+            {type: "Tablet", mg: 750},
+            {type: "Suspension", mg: 125, ml: 5}
+        ],
+        dose: 10,
+        frequency: "q24",
+        max_dose: "500 mg per day",
+        additional_Note: 
+        `Avoid concurrent use of antacids.
+        Use in children above 6 months of age.`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.pediatriconcall.com/drugs/levofloxacin/708"]
+        }
+    },
+    {
+        drug: "Mefenamic acid",
+        indication: [
+            { name: "Analgesic", dose: 25, frequency: "q6 - q8" },
+            { name: "Antipyretic", dose: 5, frequency: "q6 - q8" }
+        ],
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 250},
+            {type: "Tablet", mg: 500},
+            {type: "Suspension", mg: 50, ml: 5},
+            {type: "Suspension", mg: 100, ml: 5},
+        ],
+        max_dose: "Maximum dose is 750 mg/day.",
+        additional_Note: "Short-term use, generally, ≤7 days. Avoid <6 months. Give drug with food. Avoid in children with seizures.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Neomycin Sulfate",
+        indication: "topical antibiotic preparations, For preparation of bowel before colorectal surgery, hepatic encephalopathy",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 500},
+        ],
+        dose: 0.25,
+        frequency: "q6",
+        max_dose: "NA",
+        additional_Note: 
+        `NA`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Omeprazole",
+        indication: [
+            {
+                name: "H.pylori infection",
+                age: [
+                    { range: "1 - 5 years", dose: 1, frequency: "OD", doseType: "weight" },
+                    { range: "6 - 11 years", dose: 1, frequency: "OD", doseType: "weight" },
+                    { range: "12 to 17 kg", dose: 40, frequency: "OD", doseType: "fixed", ruleType: "weight", minWeight: 12, maxWeight: 17 }
+                ]
+            },
+            {
+                name: "Duodenal ulcer",
+                age: [
+                    { range: "1 month - 1 year", dose: 0.7, frequency: "OD", doseType: "weight" },
+                    { range: "2 - 17 years; 10 - 19 kg", dose: 10, frequency: "OD", doseType: "fixed", minWeight: 10, maxWeight: 19 },
+                    { range: "2 - 17 years; 20 kg and above", dose: 20, frequency: "OD", doseType: "fixed", minWeight: 20 }
+                ]
+            },
+            {
+                name: "Zollinger-Ellison syndrome",
+                age: [
+                    { range: "1 month - 1 year", dose: 0.7, frequency: "OD", doseType: "weight" },
+                    { range: "2 - 17 years; 10 - 19 kg", dose: 10, frequency: "OD", doseType: "fixed", minWeight: 10, maxWeight: 19 },
+                    { range: "2 - 17 years; 20 kg and above", dose: 20, frequency: "OD", doseType: "fixed", minWeight: 20 }
+                ]
+            },
+            {
+                name: "Gastroesophageal reflux disease",
+                age: [
+                    { range: "1 month - 1 year", dose: 0.7, frequency: "OD", doseType: "weight" },
+                    { range: "12 - 17 years; 10 - 19 kg", dose: 10, frequency: "OD", doseType: "fixed", minWeight: 10, maxWeight: 19 },
+                    { range: "12 - 17 years; 20 kg and above", dose: 20, frequency: "OD", doseType: "fixed", minWeight: 20 }
+                ]
+            },
+            {
+                name: "Acid-related dyspepsia",
+                age: [
+                    { range: "1 month - 1 year", dose: 0.7, frequency: "OD", doseType: "weight" },
+                    { range: "2 - 17 years; 10 - 19 kg", dose: 10, frequency: "OD", doseType: "fixed", minWeight: 10, maxWeight: 19 },
+                    { range: "12 - 17 years; 20 kg and above", dose: 20, frequency: "OD", doseType: "fixed", minWeight: 20 }
+                ]
+            }
+        ],
+        age: "NA",
+        formulation: [
+            {type: "Capsule", mg: 20},
+            {type: "Capsule", mg: 40},
+        ],
+        frequency: "q24",
+        max_dose: "Max per dose is 40 mg.",
+        additional_Note: [
+            "Take before meal.",
+            "For infants: 0.7 mg/kg OD 1/2 hour before breakfast. Double this after 7 to 14 days if no improvement.",
+            "The 12 to 17 kg wording has been retained exactly from the supplied dosing note."
+        ],
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.jscimedcentral.com/journal-article-info/Journal-of-Drug-Design-and-Research--/Clinical-Pharmacology-of-Omeprazole-in-Infants-and-Children-10173"]
+        }
+    },
+    {
+        drug: "Ondeansetron",
+        indication: "Post operative nausea and vomiting, Chemotherapy induced nausea and vomiting, Radiation induced nausea and vomiting.",
+        age: [
+            {range: "< 4years", dose: 2, frequency: "NA", doseType: "fixed" },
+            { range: "4 year - 11 years", dose: 4, frequency: "NA", doseType: "fixed" },
+            { range: "> 12 years", dose: 8, frequency: "NA", doseType: "fixed" }
+        ],
+        formulation: [
+            {type: "Tablet", mg: 4},
+            {type: "Tablet", mg: 8},
+            { type: "Syrup", mg: 2, ml: 5 },
+            { type: "Syrup", mg: 4, ml: 5 }
+        ],
+        max_dose: "Maximum dose is 8 mg/day.",
+        additional_Note: "Commonly used for Vomiting.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+    {
+        drug: "Paracetamol",
+        indication: "Mild to moderate pain and lower high body temperature. It is also used to treat fever and pain associated with common cold and flu.",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 500},
+            {type: "Tablet", mg: 1000},
+            {type: "Suspension", mg: 125, ml: 5},
+            {type: "Suspension", mg: 250, ml: 5},
+            {type: "Syrup", mg: 125, ml: 5},
+            {type: "Syrup", mg: 250, ml: 5},
+        ],
+        dose: 10,
+        frequency: "q4 - q6",
+        max_dose: "Max daily dose is 60 mg/kg/day.",
+        additional_Note: 
+        `Avoid in patients with liver disease. Avoid in patients with hypersensitivity to paracetamol. Avoid in patients with severe renal impairment.`,
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+      {
+        drug: "Phenytoin Sodium",
+        indication: "Anticonvulsant, used to control seizures in epilepsy and other seizure disorders.",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 50},
+            {type: "Tablet", mg: 100},
+            {type: "Suspension", mg: 125, ml: 5},
+            {type: "Suspension", mg: 30, ml: 5},
+            {type: "Injection", mg: 50, ml: 1}
+        ],
+        dose: 5,
+        frequency: "q12",
+        max_dose: "Max daily dose is 1.5 g/day.",
+        additional_Note:
+        "Therapeutic drug monitoring 1.25 mg/kg IV q 5 min up to a total of 15 mg/kg or until arrhythmia reverts or hypotension develops,followed by maintenance IV/PO dose of 5–10 mg/kg/d q 12 hr.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari"
+        }
+    },
+     {
+        drug: "Promethazine Hydrochloride",
+        indication: "Antihistamine, used to treat allergy symptoms, nausea, and vomiting. Motion Sickness.It is also used as a sedative or sleep aid.",
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 10},
+            {type: "Tablet", mg: 25},
+            {type: "Suspension", mg: 5, ml: 5},
+            {type: "Injection", mg: 25, ml: 1},
+            {type: "Injection", mg: 50, ml: 1}
+        ],
+        dose: 0.25,
+        frequency: "q4 - q6",
+        max_dose: "Max daily dose is 25 mg/day.",
+        additional_Note:
+        "Avoid in children under 2 years old, patient with asthma, sleep apnea. May cause drowsiness, dizziness, dry mouth, blurred vision, constipation, urinary retention.",
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.pediatriconcall.com/drugs/promethazine/902"]
+        }
+    },
+     {
+        drug: "Rabeprazole",
+        indication: [
+            {
+                name: "Gastroesophageal reflux disease",
+                age: [
+                    { range: "<12 years", dose: null, frequency: "NA", doseType: "not_established" },
+                    { range: "12 years or above", dose: 20, frequency: "OD", doseType: "fixed", duration: "8 weeks" }
+                ]
+            },
+            {
+                name: "H. pylori infection",
+                dose: 1.5,
+                frequency: "BD",
+                doseType: "weight",
+                max_per_dose: 20,
+                duration: "14 days"
+            }
+        ],
+        age: "NA",
+        formulation: [
+            {type: "Tablet", mg: 10},
+            {type: "Tablet", mg: 20},
+            {type: "Tablet", mg: 40},
+            {type: "Capsule", mg: 20},
+        ],
+        dose: 1.5,
+        frequency: "q12 - q24",
+        max_dose: "20 mg/dose for H. pylori infection.",
+        additional_Note: [
+            "GERD: safety and efficacy are not established below 12 years.",
+            "GERD: 12 years or above: 20 mg orally once a day for 8 weeks.",
+            "H. pylori infection: 1.5 to 2.5 mg/kg/day PO divided twice daily (maximum 20 mg/dose) in combination with amoxicillin and metronidazole/clindamycin for 14 days."
+        ],
+        reference: {
+            source: "Drug Dosages in Children",
+            edition: "11th Edition",
+            author: "Meharban Singh, Ashok K. Deorari",
+            urls: ["https://www.pediatriconcall.com/drugs/rabeprazole/918"]
+        }
+    },
+ ];
+
+/*
+  UNIVERSAL DOSAGE FORM LIST
+  --------------------------
+  These choices are available for every drug, regardless of whether
+  its dose is simple, age-specific, indication-specific, or formulation-specific.
+
+  The drug's `formulation` data is used for concentration/strength
+  selection when the user chooses a liquid dosage form.
+*/
+const dosageforms = [
+    { dosageform: "Tablet" },
+    { dosageform: "Capsule" },
+    { dosageform: "Suspension" },
+    { dosageform: "Powd. for Suspension" },
+    { dosageform: "Syrup" },
+    { dosageform: "Drops" },
+    { dosageform: "Injection" }
+];
+
+const drugInput = document.getElementById("drug");
+const dosageFormInput = document.getElementById("dosageForm");
+const indicationField = document.getElementById("indicationField");
+const indicationOptions = document.getElementById("indicationOptions");
+const ageRuleField = document.getElementById("ageRuleField");
+const ageRuleOptions = document.getElementById("ageRuleOptions");
+const strengthField = document.getElementById("strengthField");
+const strengthOptions = document.getElementById("strengthOptions");
+const message = document.getElementById("message");
+const liquidForms = ["Syrup", "Suspension", "Powd. for Suspension"];
+
+function clean(value) {
+    return String(value ?? "").trim().toLowerCase();
+}
+
+function getDrug() {
+    return standarddose.find(d => clean(d.drug) === clean(drugInput.value));
+}
+
+function isLiquid(form) {
+    return liquidForms.includes(form);
+}
+
+function formulations(drug) {
+    return Array.isArray(drug?.formulation) ? drug.formulation : [];
+}
+
+function getIndicationList(drug) {
+    if (Array.isArray(drug?.indications)) return drug.indications;
+    if (Array.isArray(drug?.indication)) return drug.indication;
+    return [];
+}
+
+function getIndicationLabel(item) {
+    if (!item) return "";
+    if (typeof item === "string") return item;
+    return item.name || item.indication || item.indication1 || item.indication2 || item.indication3 || "";
+}
+
+function getAgeRules(drug) {
+    const indication = selectedIndication(drug);
+
+    // Nested structure: Drug -> Indication -> Age rule
+    if (Array.isArray(indication?.age)) return indication.age;
+
+    // Older/simple structure: Drug -> Age rule
+    if (Array.isArray(drug?.age)) return drug.age;
+
+    return [];
+}
+
+function getDoseUnit(doseType) {
+    return doseType === "weight" ? "mg/kg" : "mg";
+}
+
+function showError(text) {
+    message.innerHTML = `<div class="message error">${escapeHtml(text)}</div>`;
+}
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replaceAll("&","&amp;").replaceAll("<","&lt;")
+        .replaceAll(">","&gt;").replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+function referenceText(reference) {
+    if (!reference || reference === "NA") return null;
+    if (typeof reference === "string") {
+        return { source: reference, edition: "", author: "", urls: [] };
+    }
+    return {
+        source: reference.source || "",
+        edition: reference.edition || "",
+        author: reference.author || "",
+        urls: Array.isArray(reference.urls) ? reference.urls : []
+    };
+}
+
+function renderDrugList() {
+    document.getElementById("drugList").innerHTML =
+        standarddose.map(d => `<option value="${escapeHtml(d.drug)}"></option>`).join("");
+}
+
+function renderIndications(drug) {
+    indicationOptions.innerHTML = "";
+    indicationField.classList.add("hidden");
+
+    const indications = getIndicationList(drug);
+    if (!indications.length) return;
+
+    // A single plain-string indication is information, not a selection.
+    if (indications.length === 1 && typeof indications[0] === "string") return;
+
+    indicationField.classList.remove("hidden");
+    indicationOptions.innerHTML = indications.map((item, i) => `
+        <label class="option">
+            <input type="radio" name="indication" value="${i}">
+            <span>${escapeHtml(getIndicationLabel(item))}</span>
+        </label>
+    `).join("");
+}
+
+function renderAgeRules(drug) {
+    ageRuleOptions.innerHTML = "";
+    ageRuleField.classList.add("hidden");
+
+    const rules = getAgeRules(drug);
+    if (!rules.length) return;
+
+    ageRuleField.classList.remove("hidden");
+    ageRuleOptions.innerHTML = rules.map((item, i) => {
+        const label = item.range || item.age || item.label || item.age1 || item.age2 || item.age3 || "Dose option";
+        return `
+            <label class="option">
+                <input type="radio" name="ageRule" value="${i}">
+                <span>${escapeHtml(label)}</span>
+            </label>
+        `;
+    }).join("");
+}
+
+function renderForms(drug) {
+    dosageFormInput.innerHTML = `<option value="">Select Dosage Form</option>`;
+    strengthField.classList.add("hidden");
+    strengthOptions.innerHTML = "";
+
+    if (!drug) return;
+
+    dosageforms.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.dosageform;
+        option.textContent = item.dosageform;
+        dosageFormInput.appendChild(option);
+    });
+}
+
+function renderStrengths(drug, form) {
+    strengthOptions.innerHTML = "";
+    strengthField.classList.add("hidden");
+
+    if (!drug || !isLiquid(form)) return;
+
+    const strengths = formulations(drug).filter(f =>
+        clean(f.type) === clean(form) && f.mg != null && f.ml != null
+    );
+
+    if (!strengths.length) {
+        strengthField.classList.remove("hidden");
+        strengthOptions.innerHTML = `
+            <div class="message error">
+                No strength/concentration data has been entered for
+                <strong>${escapeHtml(form)}</strong> for this drug.
+            </div>
+        `;
+        return;
+    }
+
+    strengthField.classList.remove("hidden");
+    strengthOptions.innerHTML = strengths.map((f, i) => `
+        <label class="option">
+            <input type="radio" name="strength" value="${i}">
+            <span>${escapeHtml(f.mg)} mg / ${escapeHtml(f.ml)} mL</span>
+        </label>
+    `).join("");
+}
+
+function selectedIndication(drug) {
+    const indications = getIndicationList(drug);
+    if (!indications.length) return null;
+
+    if (indications.length === 1 && typeof indications[0] === "string") {
+        return { name: indications[0] };
+    }
+
+    const input = document.querySelector('input[name="indication"]:checked');
+    return input ? indications[Number(input.value)] : null;
+}
+
+function parseAgeRange(rule) {
+    const text = String(rule?.range || "").toLowerCase();
+    const nums = text.match(/\d+(?:\.\d+)?/g)?.map(Number) || [];
+
+    if (rule?.ageMinMonths != null || rule?.ageMaxMonths != null) {
+        return {
+            min: rule.ageMinMonths ?? 0,
+            max: rule.ageMaxMonths ?? Infinity
+        };
+    }
+
+    // A rule with only weight conditions is matched by weight, not age.
+    if (!text.includes("year") && !text.includes("month")) return null;
+    if (!nums.length) return null;
+
+    if (text.includes("<")) {
+        const max = nums[0] * (text.includes("month") ? 1 : 12);
+        return { min: 0, max: max - 0.01 };
+    }
+
+    if (text.includes(">") || text.includes("above") || text.includes("older")) {
+        const min = nums[0] * (text.includes("month") ? 1 : 12);
+        return { min: min, max: Infinity };
+    }
+
+    if (nums.length >= 2) {
+        const firstIsMonth = text.indexOf("month") !== -1 &&
+            text.indexOf("month") < text.indexOf("-");
+        const secondIsMonth = text.lastIndexOf("month") > text.indexOf("-");
+        return {
+            min: firstIsMonth ? nums[0] : nums[0] * 12,
+            max: secondIsMonth ? nums[1] : nums[1] * 12
+        };
+    }
+
+    return null;
+}
+
+function ruleMatchesAgeAndWeight(rule) {
+    const years = Number(document.getElementById("years").value || 0);
+    const months = Number(document.getElementById("months").value || 0);
+    const weight = Number(document.getElementById("weight").value || 0);
+
+    if (years < 0 || months < 0 || months > 11) return false;
+
+    const totalMonths = years * 12 + months;
+    const ageRange = parseAgeRange(rule);
+
+    if (ageRange && (totalMonths < ageRange.min || totalMonths > ageRange.max)) return false;
+    if (rule?.minWeight != null && weight < Number(rule.minWeight)) return false;
+    if (rule?.maxWeight != null && weight > Number(rule.maxWeight)) return false;
+
+    return Boolean(ageRange || rule?.minWeight != null || rule?.maxWeight != null);
+}
+
+function selectedAgeRule(drug) {
+    const rules = getAgeRules(drug);
+    if (!rules.length) return null;
+
+    const chosen = document.querySelector('input[name="ageRule"]:checked');
+    if (chosen) return rules[Number(chosen.value)];
+
+    return rules.find(ruleMatchesAgeAndWeight) || null;
+}
+
+function selectedStrength(drug, form) {
+    if (!isLiquid(form)) return null;
+    const input = document.querySelector('input[name="strength"]:checked');
+    if (!input) return null;
+
+    return formulations(drug)
+        .filter(f => clean(f.type) === clean(form) && f.mg != null && f.ml != null)
+        [Number(input.value)] || null;
+}
+
+function getDose(drug) {
+    const indication = selectedIndication(drug);
+
+    // Drug -> Indication -> Age
+    if (Array.isArray(indication?.age)) {
+        const item = selectedAgeRule(drug);
+        if (!item) return { error: "Please select an age-specific dose." };
+        if (item.doseType === "not_established") {
+            return { error: "Safety and efficacy are not established for this age group." };
+        }
+        return {
+            dose: Number(item.dose),
+            frequency: item.frequency || indication.frequency || drug.frequency || "NA",
+            doseType: item.doseType || indication.doseType || drug.doseType || "weight",
+            duration: item.duration || indication.duration || "",
+            maxPerDose: item.max_per_dose ?? indication.max_per_dose ?? null,
+            ageRule: item
+        };
+    }
+
+    // Drug -> Indication
+    if (indication && typeof indication === "object") {
+        if (indication.dose != null && indication.dose !== "NA") {
+            return {
+                dose: Number(indication.dose),
+                frequency: indication.frequency || drug.frequency || "NA",
+                doseType: indication.doseType || drug.doseType || "weight",
+                duration: indication.duration || "",
+                maxPerDose: indication.max_per_dose ?? null
             };
-            
+        }
+    }
 
-             //   if (selecteddosageform.dosageform && selecteddrug.drug && formulation.type === "Syrup") {
-                  //   syrupstrength = standarddose.find(d => d.drug.toLowerCase().trim() === drug.toLowerCase().trim()).formulation.filter(f => f.type === "Syrup").map(f => ({mg: f.mg, ml: f.ml}));
-                     
-                  //  document.getElementById("strengthoptiondiv").innerHTML = `${syrupstrength.mg} mg/${syrupstrength.ml} ml`}//`Strength: ${formulation.mg} mg/${formulation.ml} ml`;}
+    // Drug -> Age
+    if (Array.isArray(drug.age)) {
+        const item = selectedAgeRule(drug);
+        if (!item) return { error: "Please enter/select a valid age group." };
+        if (item.doseType === "not_established") {
+            return { error: "Safety and efficacy are not established for this age group." };
+        }
+        return {
+            dose: Number(item.dose),
+            frequency: item.frequency || drug.frequency || "NA",
+            doseType: item.doseType || drug.doseType || "weight",
+            duration: item.duration || "",
+            maxPerDose: item.max_per_dose ?? null,
+            ageRule: item
+        };
+    }
 
+    // Drug -> simple dose
+    if (drug.dose != null && drug.dose !== "NA") {
+        return {
+            dose: Number(drug.dose),
+            frequency: drug.frequency || "NA",
+            doseType: drug.doseType || "weight",
+            duration: drug.duration || "",
+            maxPerDose: drug.max_per_dose ?? null
+        };
+    }
 
+    return { error: "Dose information is not available for this drug." };
+}
 
-//if (selecteddosageform && selecteddosageform.dosageform === "Syrup" && selecteddrug.drug) {
-                   // document.getElementById("strengthoption").innerText = `Strength: ${formulation.mg} mg/${formulation.ml} ml`;
-                   // localStorage.setItem("syrup_strength", JSON.stringify(formulation));
-                   // localStorage.setItem("selectedsyrupstrength", JSON.stringify(formulation));
+function saveResult(data) {
+    localStorage.setItem("doseCalculatorResult", JSON.stringify(data));
 
-                
-               
-            
-                
-               
-              //  selecteddosageform = Array.from(dosageform).find(d => d.dosageform === dosageform);
-                
-               // drug = document.getElementById("drugInput").value;
-               // drugdose = selecteddrug.dose;
+    // Keep the older keys for compatibility with your existing pages/code.
+    localStorage.setItem("selecteddrug", JSON.stringify(data.drug));
+    localStorage.setItem("drug", data.drug);
+    localStorage.setItem("dose", data.dose);
+    localStorage.setItem("weight", data.weight);
+    localStorage.setItem("daily_dose", data.dailyDoseMg ?? "");
+    localStorage.setItem("frequency", data.frequency);
+    localStorage.setItem("max_dose", data.maxDose);
+    localStorage.setItem("additional_Note", JSON.stringify(data.additionalNote));
+    localStorage.setItem("dosageform", data.dosageForm);
+    localStorage.setItem("selecteddosageform", data.dosageForm);
+    localStorage.setItem("selectedsyrupstrength", data.selectedStrength
+        ? `${data.selectedStrength.mg}/${data.selectedStrength.ml}` : "");
+    localStorage.setItem("mg", data.selectedStrength?.mg ?? "");
+    localStorage.setItem("ml", data.selectedStrength?.ml ?? "");
+    localStorage.setItem("syrupdose", data.dailyDoseMl ?? "");
+    localStorage.setItem("syrup_strength", JSON.stringify(data.formulations));
+    localStorage.setItem("indication", data.indication);
+}
 
+function calculate() {
+    message.innerHTML = "";
 
+    const drug = getDrug();
+    if (!drug) return showError("Please select a valid drug.");
 
-               
+    const weight = Number(document.getElementById("weight").value);
+    if (!Number.isFinite(weight) || weight <= 0)
+        return showError("Please enter a valid weight.");
 
-            /*const list =  document.querySelector('dataList');
-              const druglist =  list.querySelectorAll('option');
-              druglist.forEach(function(option) {
-                option.style.color = "red";
-              })*/
+    const dosageForm = dosageFormInput.value;
+    if (!dosageForm) return showError("Please select a dosage form.");
 
-               
-               
+    const doseInfo = getDose(drug);
+    if (doseInfo.error) return showError(doseInfo.error);
 
-                /*console.log(drugs[1].name, drugs[0].frequency);
-                console.log(drugs);
-                console.log(drugs[0]?.frequency);*/
+    const strength = selectedStrength(drug, dosageForm);
+    if (isLiquid(dosageForm) && !strength)
+        return showError("Please select a strength.");
 
-               /* document.addEventListener('click', function () {
-                let inputBoxDrug = document.getElementById('drugInput').value;
-                const inputBoxWeight = document.getElementById('weightvalue').value;
-                const num = Number(inputBoxWeight);
-                let num2;
-                const selectedDrug = drugs.find(drug => drug.name === inputBoxDrug);
+    // Weight-based: dose is multiplied by weight.
+    // Fixed: dose is already the final mg amount for the selected age.
+    const doseAmountMg = doseInfo.doseType === "fixed"
+        ? doseInfo.dose
+        : weight * doseInfo.dose;
 
-                if ( selectedDrug && num > 0) {
-                    num2 = Number(selectedDrug.standard_dose);   
-                }
+    const dailyDoseMg = doseAmountMg;
+    const dailyDoseMl = strength
+        ? (dailyDoseMg * Number(strength.ml)) / Number(strength.mg)
+        : null;
 
-                const recommended_dose = num * num2;
-                const Output = `Recommended Dose: ${recommended_dose} mg per day,
-                 Frequency: ${selectedDrug.frequency},
-                 Maximum Daily Dose: ${selectedDrug.max_dose},
-                 Additional Note: ${selectedDrug.additional_Note}`;
-               
-            });
-            
-            
-            
+    const indication = selectedIndication(drug);
+    const ageRule = doseInfo.ageRule || selectedAgeRule(drug);
+    const reference = referenceText(drug.reference);
+    const notes = Array.isArray(drug.additional_Note)
+        ? drug.additional_Note
+        : String(drug.additional_Note || "NA")
+            .split(/\n+/)
+            .map(note => note.trim())
+            .filter(Boolean);
 
-                /*console.log(typeof(num));
-                console.log(typeof(num2));*/
+    const data = {
+        drug: drug.drug,
+        weight,
+        dosageForm,
+        dose: doseInfo.dose,
+        doseType: doseInfo.doseType,
+        doseAmountMg,
+        dailyDoseMg,
+        dailyDoseMl,
+        doseUnit: getDoseUnit(doseInfo.doseType),
+        frequency: doseInfo.frequency || "NA",
+        duration: doseInfo.duration || "",
+        maxDose: drug.max_dose || "NA",
+        maxPerDose: doseInfo.maxPerDose,
+        additionalNote: notes,
+        reference,
+        indication: getIndicationLabel(indication),
+        ageRule: ageRule?.range || ageRule?.age || ageRule?.label || "",
+        selectedStrength: strength,
+        formulations: formulations(drug)
+    };
 
-                
-                /* num = 12;
-                num2 = 22;
-             
-                console.log(Output(drugs[0]),
-                    frequency01,
-                    max_dose01,
-                    additional_Note01);
+    saveResult(data);
 
-                    console.log(Output(drugs[0]),
-                    frequency01,
-                    max_dose01,
-                    additional_Note01);*/
-                
+    // Result is displayed by output.html.
+    window.location.href = "output.html";
+}
 
-                    // if (inputBoxDrug.value ===drugs[0].name) {
-                    //     console.log("Recommended Dose:" + recommended_Dose + "mg per day," +
-                    //     "Frequency:" + drugs.frequency + ","+
-                    //     "Maximum Daily Dose:" + drugs.max_dose);
-                    // } else if (inputBoxDrug.value ===drugs[1].name)
-                    // {
-                    //     console.log(`Recommended Dose: ${inputBoxWeight.value * 10} mg per day,
-                    //     Frequency: ${drugs.frequency},
-                    //     Maximum Daily Dose: ${drugs.max_dose}
-                    //     Additional Note: ${drugs.additional_Note}`);
-                    // } else {
-                    //     console.log("Error: Drug Not Found!") ;
+drugInput.addEventListener("change", () => {
+    const drug = getDrug();
+    renderIndications(drug);
+    renderAgeRules(drug);
+    renderForms(drug);
+    message.innerHTML = "";
+});
 
-                    // }
+indicationOptions.addEventListener("change", () => {
+    renderAgeRules(getDrug());
+    message.innerHTML = "";
+});
 
-                    
-                    // console.log(Number(inputBoxWeight.value = '18'));
-                    // console.log(inputBoxDrug.value=drugs[0].name);
-            </script>
-    </body>
+dosageFormInput.addEventListener("change", () => {
+    renderStrengths(getDrug(), dosageFormInput.value);
+    message.innerHTML = "";
+});
+
+document.getElementById("calculate").addEventListener("click", calculate);
+
+renderDrugList();
+</script>
+</body>
 </html>
+
