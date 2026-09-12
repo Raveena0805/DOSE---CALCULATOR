@@ -65,6 +65,115 @@ input:focus, select:focus { outline:2px solid rgba(95,168,218,.5); }
     background:rgba(255,255,255,.9); border:1px solid #888;
 }
 .error { color:#8a1f1f; border-color:#a33; }
+
+/* ---------- Responsive layout ---------- */
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    min-height: 100dvh;
+    padding:
+        clamp(12px, 3vw, 32px)
+        clamp(10px, 3vw, 32px)
+        calc(clamp(12px, 3vw, 32px) + env(safe-area-inset-bottom));
+}
+
+.app {
+    width: min(100%, 720px);
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.title {
+    width: 100%;
+    min-height: clamp(52px, 8vw, 68px);
+    margin-bottom: clamp(14px, 2.5vw, 22px);
+    padding: 8px 12px;
+    font-size: clamp(20px, 3vw, 28px);
+}
+
+.mode {
+    width: 100%;
+    min-height: clamp(46px, 7vw, 58px);
+    margin-bottom: clamp(14px, 2.5vw, 22px);
+    padding: 8px 12px;
+    font-size: clamp(17px, 2.5vw, 22px);
+}
+
+.card {
+    width: 100%;
+    padding: clamp(15px, 3vw, 26px);
+    border-radius: clamp(14px, 3vw, 20px);
+}
+
+.field {
+    margin-bottom: clamp(13px, 2vw, 18px);
+}
+
+label {
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+input, select {
+    width: 100%;
+    max-width: 100%;
+    min-height: 40px;
+    height: auto;
+    padding: 8px 10px;
+    font-size: max(16px, 1rem);
+}
+
+.option-group {
+    width: 100%;
+}
+
+.option {
+    width: 100%;
+    min-height: 40px;
+    line-height: 1.35;
+}
+
+.age-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.calculate-wrap {
+    margin: clamp(16px, 3vw, 24px) 0;
+}
+
+#calculate {
+    min-height: 42px;
+}
+
+.message {
+    width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    .app {
+        width: 100%;
+    }
+
+    .age-row {
+        grid-template-columns: 1fr;
+    }
+
+    .option {
+        padding: 9px 10px;
+    }
+}
+
+@media (min-width: 721px) {
+    body {
+        align-items: flex-start;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -85,7 +194,7 @@ input:focus, select:focus { outline:2px solid rgba(95,168,218,.5); }
         </div>
 
         <div id="ageRuleField" class="field hidden">
-            <label>Age Range</label>
+            <label>Age-specific dose</label>
             <div id="ageRuleOptions" class="option-group"></div>
         </div>
 
