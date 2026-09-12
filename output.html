@@ -112,6 +112,100 @@ body {
     border-radius:20px;
     box-shadow:4px 5px 6px 2px rgba(106,118,123,1);
 }
+
+/* ---------- Responsive layout ---------- */
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    min-height: 100dvh;
+    padding:
+        clamp(12px, 3vw, 32px)
+        clamp(10px, 3vw, 32px)
+        calc(clamp(12px, 3vw, 32px) + env(safe-area-inset-bottom));
+}
+
+.app {
+    width: min(100%, 720px);
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.title {
+    width: 100%;
+    min-height: clamp(52px, 8vw, 68px);
+    margin-bottom: clamp(14px, 2.5vw, 22px);
+    padding: 8px 12px;
+    font-size: clamp(20px, 3vw, 28px);
+}
+
+.output-card {
+    width: 100%;
+    padding: clamp(15px, 3vw, 26px);
+    border-radius: clamp(14px, 3vw, 20px);
+}
+
+.result-row {
+    grid-template-columns: minmax(110px, 0.32fr) minmax(0, 0.68fr);
+    gap: clamp(8px, 2vw, 16px);
+    padding: clamp(9px, 2vw, 13px) 0;
+}
+
+.result-label,
+.result-value {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.result-label {
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+.result-value {
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+.safety {
+    margin-top: clamp(12px, 2vw, 16px);
+    padding: clamp(10px, 2vw, 14px);
+}
+
+.reference {
+    margin-top: clamp(10px, 2vw, 14px);
+    overflow-wrap: anywhere;
+}
+
+.reference-list a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.actions {
+    margin-top: clamp(16px, 3vw, 22px);
+}
+
+.back {
+    min-width: 120px;
+    min-height: 42px;
+    height: auto;
+    padding: 8px 14px;
+}
+
+@media (max-width: 480px) {
+    .result-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .result-label {
+        margin-bottom: 1px;
+    }
+}
+
 </style>
 </head>
 
@@ -122,7 +216,7 @@ body {
     <section id="output"></section>
 
     <div class="actions">
-        <button class="back" type="button" onclick="window.location.href='index.html'">
+        <button class="back" type="button" onclick="window.location.href='input_rev01_weightbased.html'">
             Back to Calculator
         </button>
     </div>
