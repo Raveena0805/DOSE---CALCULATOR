@@ -1,423 +1,271 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>DOSE_CALCULATOR_OUTPUT</title>
-        <style>
-            body {
-    background: linear-gradient(
-        180deg,
-        rgba(118, 194, 222, 0.25) 0%,
-    rgba(83, 156, 183, 0.40) 25%,
-    rgba(170, 211, 226, 0.5) 50%,
-    rgba(63, 123, 145, 0.75) 75%,
-    rgba(29, 68, 82, 1) 100%
-    );
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
-   max-width: 360px;
-   width: 100%;
-   max-height: 720px;  
-   height: 100%;
-}
-.Entire-Page {
-      width: 100%;
-        height: 100%; 
-        display: block;
-}
-.Button-dose-calculator {
-        background-color: #2E7DA4;
-        color: black;
-        height: 70px;
-        width: 270px;
-        padding: 8px;
-        font-weight: bolder;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 24px;
-        border-width: 2px;
-        border-color: black;
-        border-radius: 5px;
-        border-style: solid;
-        display: flex;
-        align-items:center;
-        justify-content:center;
-        margin-bottom: 50px;  
-        margin-top: 50px;
-        margin-left: 40px;
-        margin-right: 30px;
-        inline-size: 250px;
-        cursor: pointer;
-      }
- .Output-Card {
-    background-color: #F3FBFF;
-    width: 300px;
-    height: 300px;
-    border-radius: 23px;
-    border-color: black;
-    border-width: 1px;
-    box-shadow: 4px 5px 6px 2px rgba(106, 118, 123, 1);
-    margin-bottom: 10px;
-    margin-left: 23px;
-    margin-right: 25px;
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOSE CALCULATOR - OUTPUT</title>
+<style>
+* { box-sizing:border-box; }
 
- }
-
- .drug_dose {
-    display: grid;
-        grid-template-columns: repeat(2, 1fr );
-        column-gap: 0px;
-        row-gap: 0px;
-        grid-auto-rows: minmax(15px, auto);
-        position: absolute;
-    margin-top: 25px;
-    margin-left: 10px;
-    width: 280px;
-    align-self: self-start;
- }
-
- .Dose {
-    background-color: none;
-    width: 80px;
-    height: 31px;
-    display: block;
-    margin-top: 1px;
-    margin-bottom: 1px;
-    margin-left: 5px;
-    margin-right: 5px;
-    align-self: self-start;
- }
- .dose_title {
-    background-color: none;
-    width: 80px;
-    height: 31px;
-    display: block;
-    margin-top: 1px;
-    margin-bottom: 1px;
-    margin-left: 5px;
-    margin-right: 5px;
-    align-self: self-start;
-
- }
- .dose_value {
-    background-color: none;
-    width: 80px;
-    height: 31px;
-    display: block;
-    margin-top: 4px;
-    margin-bottom: 1px;
-    margin-left: 5px;
-    margin-right: 5px;
-    align-self: self-start;
- }
-
-
- .drug_frequency {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr );
-    column-gap: 0px;
-    row-gap: 0px;
-    grid-auto-rows: minmax(15px, auto);
-    position: absolute;
-    margin-top: 50px;
-    margin-left: 15px;
-    width: 280px;
-    align-self: self-start;
- }
-
- .frequency {
-    background-color: none;
-    width: 80px;
-    height: 31px;
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-    margin-right: 5px;
-    align-self: self-start;
- }
-
- .frequency_title {
-    background-color: none;
-    width: 80px;
-    height: 31px;
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 2px;
-    margin-right: 5px;
-    align-self: self-start;
-
- }
- .frequency_value {
-    background-color: none;
-    width: 80px;
-    height: 31px;
-    display: block;
-    margin-top: 35px;
-    margin-bottom: 15px;
-    margin-left: 1px;
-    margin-right: 5px;
-    align-self: self-start;
-
- }
-
- .drug_max_dose {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr );
-    column-gap: 0px;
-    row-gap: 0px;
-    grid-auto-rows: minmax(15px, auto);
-    position: absolute;
-    margin-top: 100px;
-    margin-left: 15px;
-    width: 280px;
-    align-self: self-start;
- }
-
- .max_dose {
-    background-color: none;
-    width: 80px;
-    height: 31px;
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-    margin-right: 5px;
-    align-self: self-start;
- }
-
- .max_dose_title {
-     background-color: none;
-    width: 80px;
-    height: 35px;
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 2px;
-    margin-right: 5px;
-    align-self: self-start;
- }
-
- .max_dose_value {
-    background-color: none;
-    height: 31px;
-    display: block;
-    margin-top: 35px;
-    margin-bottom: 15px;
-    margin-left: 1px;
-    margin-right: 5px;
-    align-self: self-start;
-
- }
-
- .drug_additional_Note {
-   display: grid;
-        grid-template-columns: repeat(2, 1fr );
-        column-gap: 0px;
-        row-gap: 0px;
-        grid-auto-rows: minmax(15px, auto);
-        position: absolute;
-    margin-top: 150px;
-    margin-left: 15px;
-    width: 280px;
-    align-self: self-start; 
- }
-
- .additional_Note_title {
-    background-color: none;
-    color: red;
-    height: 35px;
-    display: block;
-    margin-top: 50px;
-    margin-bottom: 15px;
-    margin-left: 5px;
-    margin-right: 5px;
-    align-self: self-start;
- }
- .additional_note {
-    background-color: none;
-    color: rgba(184, 71, 71, 0.845);
-    height: 31px;
-    display: block;
-    margin-top: 50px;
-    margin-bottom: 15px;
-    margin-left: 1px;
-    margin-right: 5px;
-    align-self: self-start;
- }
-
- .Back_to_home {
-    height: 40px;
-    color: black;
-    text-align: center;
-    font-weight: bold;
-    background: linear-gradient(180deg, 
-   rgba(95, 168, 218, 1) 0%,
-   rgb(37, 95, 134) 45%,
-   rgb(11, 51, 78) 100%);
-    border-radius: 5px;
-    margin-top: 320px;
-    align-items: center;
-margin-left: 100px;
-font-size: 14px;
+body {
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(180deg,
+        rgba(118,194,222,.25) 0%,
+        rgba(83,156,183,.40) 25%,
+        rgba(170,211,226,.50) 50%,
+        rgba(63,123,145,.75) 75%,
+        rgba(29,68,82,1) 100%);
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:24px 10px;
 }
 
-        </style>
-    </head>
-    <body>
-        <div class="Entire-Page">
-            <button class="Button-dose-calculator"> DOSE-CALCULATOR </button>
+.app { width:100%; max-width:360px; }
 
-            <div class = Output-Card>
+.title {
+    width:100%; min-height:64px; margin-bottom:20px;
+    border:2px solid #000; border-radius:8px;
+    background:#2E7DA4; color:#000;
+    font-size:24px; font-weight:800;
+}
 
-                <div class="drug_dose">
-                <div class = Dose>
-                    <button id = "dose_title" class= dose_title>Dose: </button>
-                </div>
-                <div id = "dose" class="dose_value" ></div>
-                </div>
+.output-card {
+    width:100%;
+    padding:20px 18px;
+    background:#F3FBFF;
+    border:1px solid #000;
+    border-radius:20px;
+    box-shadow:4px 5px 6px 2px rgba(106,118,123,1);
+}
 
-                <div class="drug_frequency">
-                <div class="frequency">
-                    <button id="frequency_title" class="frequency_title">Frequency: 
-                    </button>
-                </div>
-                <div id = "frequency" class="frequency_value"></div>
-                </div>
+.result-row {
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:10px;
+    padding:11px 0;
+    border-bottom:1px solid #cbd7dc;
+    align-items:start;
+}
 
-               <div class="drug_max_dose">
-                <div class="max_dose">
-                    <button id="max_dose_title" class = "max_dose_title">Max. Daily Dose: </button>
-                </div>
-                <div id = "max_dose" class="max_dose_value"></div>
-               </div>
-                
-                <div class="drug_additional_Note">
-                    <p id="additional_Note_title" class="additional_Note_title"> Safety Instructions: </p>
-                    <div id="additional_note" class="additional_note">
-                    </div>
-                </div>
+.result-row:last-child { border-bottom:none; }
+.result-label { font-weight:800; }
+.result-value { overflow-wrap:anywhere; }
 
-                
+.safety {
+    margin-top:14px;
+    padding:12px;
+    border-radius:7px;
+    background:#fff4f4;
+    border:1px solid rgba(184,71,71,.45);
+}
 
-            <button class="Back_to_home" onclick="window.location.href= 'index.html'"> Back to Home </button>
+.safety-title {
+    margin:0 0 6px;
+    color:#b84747;
+    font-weight:800;
+}
 
+.notes-list,
+.reference-list {
+    margin:6px 0 0 18px;
+    padding:0;
+}
+
+.notes-list li,
+.reference-list li { margin:5px 0; }
+
+.reference {
+    margin-top:14px;
+    font-size:12px;
+    color:#555;
+}
+
+.reference-list a {
+    color:#245f86;
+    overflow-wrap:anywhere;
+}
+
+.actions {
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.back {
+    min-width:120px;
+    height:40px;
+    border:0;
+    border-radius:6px;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(180deg,#5FA8DA 0%,#255F86 45%,#0B334E 100%);
+    color:#000;
+}
+
+.empty {
+    padding:20px;
+    text-align:center;
+    background:#F3FBFF;
+    border:1px solid #000;
+    border-radius:20px;
+    box-shadow:4px 5px 6px 2px rgba(106,118,123,1);
+}
+</style>
+</head>
+
+<body>
+<main class="app">
+    <button class="title" type="button">DOSE-CALCULATOR</button>
+
+    <section id="output"></section>
+
+    <div class="actions">
+        <button class="back" type="button" onclick="window.location.href='index.html'">
+            Back to Calculator
+        </button>
+    </div>
+</main>
+
+<script>
+function getResult() {
+    const stored = localStorage.getItem("doseCalculatorResult");
+    if (!stored) return null;
+
+    try {
+        return JSON.parse(stored);
+    } catch (error) {
+        console.error("Could not read calculation result:", error);
+        return null;
+    }
+}
+
+function formatNumber(value) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return value || "NA";
+    return Number.isInteger(number)
+        ? String(number)
+        : String(Number(number.toFixed(2)));
+}
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+function row(label, value) {
+    if (value === "" || value === null || value === undefined) return "";
+    return `
+        <div class="result-row">
+            <div class="result-label">${escapeHtml(label)}</div>
+            <div class="result-value">${escapeHtml(value)}</div>
         </div>
-        <h1 id="result"></h1>
+    `;
+}
 
-        
+function renderNotes(notes) {
+    if (Array.isArray(notes)) {
+        const items = notes.filter(Boolean);
+        if (!items.length) return "<div>NA</div>";
+        return `<ul class="notes-list">${items.map(note =>
+            `<li>${escapeHtml(note)}</li>`
+        ).join("")}</ul>`;
+    }
 
-            <script>
-         //     window.onload = function () {
-  //document.getElementById("result").innerText =
-  //  localStorage.getItem("test");
-//};
+    if (!notes || notes === "NA") return "<div>NA</div>";
 
-            let selecteddrug = JSON.parse(localStorage.getItem("selecteddrug"));
-            let drug = localStorage.getItem("drug");
-            let dose = parseInt(localStorage.getItem("dose"));
-            let weight = parseInt(localStorage.getItem("weight"));
-            let dailydose = parseInt(localStorage.getItem("daily_dose"));
-            let frequency = localStorage.getItem("frequency");
-            let max_dose = parseInt(localStorage.getItem("max_dose"));
-            let additional_Note = localStorage.getItem("additional_Note");
-           let dosageform = localStorage.getItem("dosageform");
-            let selecteddosageform = localStorage.getItem("selecteddosageform");
-            let selectedsyrupstrength = parseInt(localStorage.getItem("selectedsyrupstrength"));
-            let syrupstrength = JSON.parse(localStorage.getItem("syrup_strength"));
-            let mg = parseInt(localStorage.getItem("mg"));
-            let ml = parseInt(localStorage.getItem("ml"));
-           let dailydose_syrup  =parseInt(localStorage.getItem("syrupdose")); 
-             
-                  
-            //console.log(syrupstrength)
-          //  let selectedsyrupstrengthmg = JSON.parse(localStorage.getItem("selectedsyrupstrengthmg"));
-         //   let selectedsyrupstrengthml = JSON.parse(localStorage.getItem("selectedsyrupstrengthml"));
-            window.onload = function() {
-           let selecteddrug = JSON.parse(localStorage.getItem("selecteddrug"));
-            let drug = localStorage.getItem("drug");
-            let dose = parseInt(localStorage.getItem("dose"));
-            let weight = parseInt(localStorage.getItem("weight"));
-            let dailydose = parseInt(localStorage.getItem("daily_dose"));
-            let frequency = localStorage.getItem("frequency");
-            let max_dose = parseInt(localStorage.getItem("max_dose"));
-            let additional_Note = localStorage.getItem("additional_Note");
-           let dosageform = localStorage.getItem("dosageform");
-            let selecteddosageform = localStorage.getItem("selecteddosageform");
-            let selectedsyrupstrength = parseInt(localStorage.getItem("selectedsyrupstrength"));
-            let  mg = parseInt(selectedsyrupstrength ? selectedsyrupstrength.split('/')[0] : null);
-              // console.log(typeof mg);
-              let ml = parseInt(selectedsyrupstrength ? selectedsyrupstrength.split('/')[1] : null);
-            let syrupstrength = JSON.parse(localStorage.getItem("syrup_strength"));
-          //  let mg = Number(localStorage.getItem("mg"));
-         //   let ml = Number(localStorage.getItem("ml"));
-           let dailydose_syrup  =parseInt(localStorage.getItem("syrupdose")); 
-           
-            };
-                  
-            window.onload = function() {
-           let selecteddrug = JSON.parse(localStorage.getItem("selecteddrug"));
-            let drug = localStorage.getItem("drug");
-            let dose = parseInt(localStorage.getItem("dose"));
-            let weight = parseInt(localStorage.getItem("weight"));
-            let dailydose = parseInt(localStorage.getItem("daily_dose"));
-            let frequency = localStorage.getItem("frequency");
-            let max_dose = parseInt(localStorage.getItem("max_dose"));
-            let additional_Note = localStorage.getItem("additional_Note");
-           let dosageform = localStorage.getItem("dosageform");
-           //console.log("dosageform", dosageform);
-            let selecteddosageform = localStorage.getItem("selecteddosageform");
-           // let selectedsyrupstrength = parseInt(localStorage.getItem("selectedsyrupstrength"));
-            let syrupstrength = JSON.parse(localStorage.getItem("syrup_strength"));
-            
-           let mg = parseInt(localStorage.getItem("mg"));
-           let ml = parseInt(localStorage.getItem("ml"));
-           let dailydose_syrup  = parseInt(localStorage.getItem("syrupdose")); 
-           console.log(typeof(mg));
-            console.log(typeof(ml));
-            console.log(typeof(selecteddrug));
-            console.log(typeof(selecteddosageform));
-          console.log(typeof(selectedsyrupstrength));
-            console.log(selectedsyrupstrength);
-            console.log("weight", typeof(weight));
-            console.log(typeof(dosageform));
-            console.log(typeof(selecteddosageform));  
+    const items = String(notes)
+        .split(/\n+/)
+        .map(item => item.trim())
+        .filter(Boolean);
 
-          //  if (selecteddrug === drug & weight >0 && dosageform === "Syrup") {
-                //  console.log(selecteddrug)};
-                  
+    return `<ul class="notes-list">${items.map(note =>
+        `<li>${escapeHtml(note)}</li>`
+    ).join("")}</ul>`;
+}
 
-               if (selecteddrug === drug && weight >0 && (dosageform === "Tablet"|| dosageform === "Capsule")) {
-                  console.log(selecteddrug);
-               document.getElementById("dose").innerText = `${dailydose} mg`;
-                document.getElementById("frequency").innerText = `${frequency}`;
-                document.getElementById("max_dose").innerText = `${max_dose}`;
-                document.getElementById("additional_note").innerText = additional_Note;
-               } else if (selecteddrug === drug && weight >0 && (dosageform === "Syrup"||dosageform === "Suspension" || dosageform === "Powd. for Suspension") ) {
-                 console.log(selecteddrug);
-               document.getElementById("dose").innerText = `${dailydose_syrup} ml`;
-               document.getElementById("frequency").innerText = `${frequency}`;
-               document.getElementById("max_dose").innerText = `${max_dose}`;
-               document.getElementById("additional_note").innerText = additional_Note;
-               }
-                
-               // document.getElementById("result").innerText = `OUTPUT: 
-        //   Dose: ${dailydose_syrup} ml, Frequency: ${frequency},
-           // Max Dose: ${max_dose}, Additional Note: ${additional_Note}
-          //  `;
-            };
-            console.log(localStorage.getItem("drug"));
-            console.log("ALL STORAGE:", localStorage);
-            console.log("drug:", localStorage.getItem("drug"));
-            console.log("daily dose:", localStorage.getItem("daily_dose"));
-            console.log("dailydose_syrup:", `${localStorage.getItem("syrupdose")} ml`);
-            console.log("selectedsyrupstrength:", localStorage.getItem("selectedsyrupstrength"));
-             console.log("syrup_strength:", localStorage.getItem("syrup_strength"));
-             console.log("mg:", localStorage.getItem("mg"));
-             console.log("ml:", localStorage.getItem("ml"));
+function renderReference(reference) {
+    if (!reference) return "NA";
 
-            </script>
-    </body>
+    if (typeof reference === "string") {
+        return escapeHtml(reference);
+    }
+
+    const source = reference.source || "NA";
+    const edition = reference.edition ? `, ${reference.edition}` : "";
+    const author = reference.author ? ` — ${reference.author}` : "";
+
+    let html = `<div>${escapeHtml(source + edition + author)}</div>`;
+
+    const urls = Array.isArray(reference.urls)
+        ? reference.urls
+        : reference.url
+            ? [reference.url]
+            : [];
+
+    if (urls.length) {
+        html += `<ul class="reference-list">`;
+        urls.forEach(url => {
+            const safeUrl = escapeHtml(url);
+            html += `<li><a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeUrl}</a></li>`;
+        });
+        html += `</ul>`;
+    }
+
+    return html;
+}
+
+function renderOutput() {
+    const output = document.getElementById("output");
+    const data = getResult();
+
+    if (!data) {
+        output.innerHTML = `
+            <div class="empty">
+                No calculation found.<br><br>
+                Please go back and calculate a dose first.
+            </div>
+        `;
+        return;
+    }
+
+    const isLiquid = [
+        "Syrup",
+        "Suspension",
+        "Powd. for Suspension"
+    ].includes(data.dosageForm);
+
+    const doseDisplay = isLiquid && data.dailyDoseMl != null
+        ? `${formatNumber(data.dailyDoseMl)} mL/day`
+        : `${formatNumber(data.dailyDoseMg)} mg/day`;
+
+    output.innerHTML = `
+        <section class="output-card">
+            ${row("Drug", data.drug)}
+            ${row("Indication", data.indication)}
+            ${row("Dose", doseDisplay)}
+            ${row("Frequency", data.frequency)}
+            ${row("Max. Dose", data.maxDose)}
+
+            <div class="safety">
+                <p class="safety-title">Additional Notes</p>
+                ${renderNotes(data.additionalNote)}
+            </div>
+
+            <div class="reference">
+                <strong>References:</strong>
+                ${renderReference(data.reference)}
+            </div>
+        </section>
+    `;
+}
+
+renderOutput();
+</script>
+</body>
 </html>
